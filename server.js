@@ -63,7 +63,7 @@ app.get("/callback", async (req, res) => {
     if (state === null || state !== storedState) {
         console.log("ERROR in /callback");
         res.redirect(
-            "/#" +
+            "http://localhost:3000/?" +
                 qs.stringify({
                     error: "state_mismatch",
                 }),
@@ -71,7 +71,7 @@ app.get("/callback", async (req, res) => {
     } else {
         res.clearCookie(stateKey);
 
-        console.log("Requesting access and refresh token...");
+        console.log("Requesting access and refresh tokens...");
         let response = await axios({
             url: "https://accounts.spotify.com/api/token",
             method: "post",
@@ -89,9 +89,10 @@ app.get("/callback", async (req, res) => {
             },
         });
 
+        console.log("Status: ", response.status);
         if (response.status === 200 && !response.error) {
-            console.log(response.status);
-            const { access_token, refresh_token, expires_in } = response.data;
+            console.log(response.data);
+            let { access_token, refresh_token, expires_in } = response.data;
 
             res.redirect(
                 "http://localhost:3000/?" +
@@ -103,7 +104,7 @@ app.get("/callback", async (req, res) => {
             );
         } else {
             res.redirect(
-                "http://localhost:3000//?" +
+                "http://localhost:3000/?" +
                     qs.stringify({
                         error: "invalid_token",
                     }),
@@ -112,32 +113,37 @@ app.get("/callback", async (req, res) => {
     }
 });
 
-app.get("/refresh_token", function (req, res) {
+app.get("/refresh_token", async (req, res) => {
     // requesting access token from refresh token
     const refresh_token = req.query.refresh_token;
-    const authOptions = {
+
+    let response = await axios({
         url: "https://accounts.spotify.com/api/token",
+        method: "post",
+        params: {
+            grant_type: "refresh_token",
+            refresh_token: refresh_token,
+        },
         headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
             Authorization: `Basic ${Buffer.from(
                 `${client_id}:${client_secret}`,
             ).toString("base64")}`,
         },
-        form: {
-            grant_type: "refresh_token",
-            refresh_token: refresh_token,
-        },
-        json: true,
-    };
-
-    axios.post(authOptions, function (error, response, body) {
-        if (!error && response.statusCode === 200) {
-            const access_token = body.access_token;
-            res.send({
-                access_token: access_token,
-            });
-        }
     });
+
+    if (response.status === 200 && !response.error) {
+        let { access_token, expires_in } = response.data;
+        res.redirect(
+            "http://localhost:3000/?" +
+                qs.stringify({
+                    access_token,
+                    expires_in,
+                }),
+        );
+    }
 });
 
-console.log("Listening on 3001");
-app.listen(3001);
+app.listen(3001, () => {
+    console.log("Listening on PORT 3001");
+});
