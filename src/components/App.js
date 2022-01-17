@@ -10,7 +10,7 @@ function App() {
         setAccessToken(token);
     }, []);
 
-    return <div className="App">{accessToken ? <User /> : <Login />}</div>;
+    return <div className="h-full">{accessToken ? <User /> : <Login />}</div>;
 }
 
 export default App;
