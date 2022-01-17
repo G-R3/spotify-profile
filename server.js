@@ -134,13 +134,7 @@ app.get("/refresh_token", async (req, res) => {
 
     if (response.status === 200 && !response.error) {
         let { access_token, expires_in } = response.data;
-        res.redirect(
-            "http://localhost:3000/?" +
-                qs.stringify({
-                    access_token,
-                    expires_in,
-                }),
-        );
+        res.json({ access_token, expires_in });
     }
 });
 
