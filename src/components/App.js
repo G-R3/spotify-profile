@@ -1,29 +1,16 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
+import Login from "./Login";
+import User from "./User";
+import token from "../api/index";
 
 function App() {
-    const [token, setToken] = useState("");
-
-    function getJsonFromUrl(url) {
-        if (!url) url = window.location.search;
-        var query = url.substr(1);
-        var result = {};
-        query.split("&").forEach(function (part) {
-            var item = part.split("=");
-            result[item[0]] = decodeURIComponent(item[1]);
-        });
-        return result;
-    }
+    const [accessToken, setAccessToken] = useState("");
 
     useEffect(() => {
-        setToken(token);
+        setAccessToken(token);
     }, []);
 
-    return (
-        <div className="App">
-            <a href="http://localhost:3001/login">Login</a>
-        </div>
-    );
+    return <div className="App">{accessToken ? <User /> : <Login />}</div>;
 }
 
 export default App;
