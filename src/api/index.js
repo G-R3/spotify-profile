@@ -84,15 +84,26 @@ export default token;
 
 // if we don't have a token this will throw out a 401 error
 const getUser = async () => {
-    console.log("Making request: ", token);
     let response = await axios.get("https://api.spotify.com/v1/me", {
         headers: {
             Authorization: `Bearer ${token}`,
         },
     });
 
-    console.log(response);
     return response.data;
 };
 
-export { getUser };
+const getFollowing = async () => {
+    let response = await axios.get(
+        "https://api.spotify.com/v1/me/following?type=artist",
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        },
+    );
+
+    return response.data.artists;
+};
+
+export { getUser, getFollowing };
