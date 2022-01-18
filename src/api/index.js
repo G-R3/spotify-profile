@@ -107,12 +107,35 @@ const getFollowing = async () => {
 };
 
 const getTopTrack = async () => {
-    let response = await axios.get("https://api.spotify.com/v1/me/top/tracks", {
+    let response = await axios.get(
+        "https://api.spotify.com/v1/me/top/tracks?limit=10",
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        },
+    );
+    return response.data;
+};
+const getTopArtists = async () => {
+    let response = await axios.get(
+        "https://api.spotify.com/v1/me/top/artists?limit=10",
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        },
+    );
+    return response.data;
+};
+const getUserPlaylist = async () => {
+    let response = await axios.get("https://api.spotify.com/v1/me/playlists", {
         headers: {
             Authorization: `Bearer ${token}`,
         },
     });
+    console.log(response.data);
     return response.data;
 };
 
-export { getUser, getFollowing, getTopTrack };
+export { getUser, getFollowing, getTopTrack, getTopArtists, getUserPlaylist };
