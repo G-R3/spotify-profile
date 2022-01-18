@@ -106,4 +106,13 @@ const getFollowing = async () => {
     return response.data.artists;
 };
 
-export { getUser, getFollowing };
+const getTopTrack = async () => {
+    let response = await axios.get("https://api.spotify.com/v1/me/top/tracks", {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    return response.data;
+};
+
+export { getUser, getFollowing, getTopTrack };
