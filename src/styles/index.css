@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+    .slider-scrollbar::-webkit-scrollbar {
+        @apply bg-neutral-800 h-2 rounded-md;
+    }
+    .slider-scrollbar::-webkit-scrollbar-thumb {
+        @apply bg-neutral-700 rounded-md w-px hover:bg-stone-600 active:bg-stone-600;
+    }
+}

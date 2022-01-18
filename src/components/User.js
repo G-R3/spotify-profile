@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "./Sidebar";
 import Tracks from "./Tracks";
+import Artists from "./Artists";
 import { getUser, getFollowing } from "../api";
+import Playlists from "./Playlists";
 
 export default function User() {
     const [user, setUser] = useState("");
@@ -52,9 +54,14 @@ export default function User() {
                                 </div>
                             </div>
                         </section>
-                        <section className="flex justify-evenly">
+                        <section className="flex justify-evenly flex-col md:flex-row">
+                            <Artists />
                             <Tracks />
-                            <Tracks />
+                        </section>
+                        <section className="flex flex-col gap-20">
+                            <div className="p-10">
+                                <Playlists />
+                            </div>
                         </section>
                     </div>
                 </main>

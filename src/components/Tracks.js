@@ -16,10 +16,13 @@ export default function Tracks() {
 
     return topTracks ? (
         <div>
-            <h2 className="text-lg font-bold">Top Tracks</h2>
-            <div className="">
+            <h2 className="text-lg font-bold mb-5">Top Tracks</h2>
+            <div className="flex flex-col gap-5">
                 {topTracks.items.map((track, i) => (
-                    <div key={i} className="w-[400px] flex gap-4 text-sm my-5">
+                    <div
+                        key={i}
+                        className="w-[400px] flex items-center gap-4 text-sm"
+                    >
                         <img
                             src={track.album.images[0].url}
                             alt=""
@@ -34,7 +37,7 @@ export default function Tracks() {
                                     )}
                                 </span>
                             </h3>
-                            <span className=" text-neutral-400">
+                            <span className="text-xs text-neutral-400">
                                 {track.artists[0].name}
                             </span>
                         </div>
