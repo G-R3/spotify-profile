@@ -32,23 +32,23 @@ export default function User() {
                                 alt=""
                                 className="w-52 h-52 rounded-full"
                             />
-                            <h1 className="my-3 font-semibold">
+                            <h1 className="my-3 text-xl font-semibold">
                                 Welcome @{user.display_name}
                             </h1>
                             <div className="flex justify-center items-center gap-3 h-10">
-                                <div className="bg-neutral-800 rounded-md py-1 px-4">
-                                    <p className="text-neutral-400 text-sm font-semibold">
+                                <div className="bg-neutral-800 rounded-md py-2 px-5 text-sm text-center">
+                                    <p className="text-neutral-400 font-semibold">
                                         Followers
                                     </p>
-                                    <span className="text-spotify-green text-center block font-bold">
+                                    <span className="text-spotify-green block font-bold">
                                         {user.followers.total}
                                     </span>
                                 </div>
-                                <div className="bg-neutral-800 rounded-md py-1 px-4">
-                                    <p className="text-neutral-400 text-sm font-semibold">
+                                <div className="bg-neutral-800 rounded-md py-2 px-5 text-sm text-center">
+                                    <p className="text-neutral-400 font-semibold">
                                         Following
                                     </p>
-                                    <span className="text-spotify-green text-center block font-bold">
+                                    <span className="text-spotify-green block font-bold">
                                         {following.total}
                                     </span>
                                 </div>

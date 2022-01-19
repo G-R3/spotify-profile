@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Login from "./Login";
-import User from "./User";
+import Profile from "./Profile";
 import token from "../api/index";
 
 function App() {
@@ -10,7 +10,9 @@ function App() {
         setAccessToken(token);
     }, []);
 
-    return <div>{accessToken ? <User /> : <Login />}</div>;
+    return (
+        <div className="h-full">{accessToken ? <Profile /> : <Login />}</div>
+    );
 }
 
 export default App;
