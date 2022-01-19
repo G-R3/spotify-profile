@@ -53,10 +53,6 @@ const getAccessToken = () => {
     const { access_token, refresh_token, expires_in } = parseUrl();
     const savedToken = getToken();
 
-    console.log("Access token:\n", access_token);
-    console.log("LocalStorage token:\n", savedToken);
-    console.log("Refresh token:\n", refresh_token);
-
     // TODO: handle token expiration
     if (Date.now() > getExpiresIn() && getRefreshToken()) {
         console.log("Token expired. Requesting and setting new token...");
@@ -106,26 +102,23 @@ const getFollowing = async () => {
     return response.data.artists;
 };
 
-const getTopTrack = async () => {
-    let response = await axios.get(
-        "https://api.spotify.com/v1/me/top/tracks?limit=10",
-        {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
+const getTopTracks = async (url) => {
+    if (!url) url = "https://api.spotify.com/v1/me/top/tracks?limit=5";
+    let response = await axios.get(url, {
+        headers: {
+            Authorization: `Bearer ${token}`,
         },
-    );
+    });
     return response.data;
 };
-const getTopArtists = async () => {
-    let response = await axios.get(
-        "https://api.spotify.com/v1/me/top/artists?limit=10",
-        {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
+const getTopArtists = async (url) => {
+    if (!url) url = "https://api.spotify.com/v1/me/top/artists?limit=5";
+    let response = await axios.get(url, {
+        headers: {
+            Authorization: `Bearer ${token}`,
         },
-    );
+    });
+    console.log(response.data);
     return response.data;
 };
 const getUserPlaylist = async () => {
@@ -134,8 +127,8 @@ const getUserPlaylist = async () => {
             Authorization: `Bearer ${token}`,
         },
     });
-    console.log(response.data);
+
     return response.data;
 };
 
-export { getUser, getFollowing, getTopTrack, getTopArtists, getUserPlaylist };
+export { getUser, getFollowing, getTopTracks, getTopArtists, getUserPlaylist };

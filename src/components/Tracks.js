@@ -1,24 +1,64 @@
 import React, { useState, useEffect } from "react";
-import { getTopTrack } from "../api";
+import { getTopTracks } from "../api";
 import { milliToMinutesAndSeconds } from "../utils/utils";
 
 export default function Tracks() {
     const [topTracks, setTopTracks] = useState("");
+    const [nextItems, setNextItems] = useState("");
+    const [prevItems, setPrevItems] = useState("");
 
     useEffect(() => {
         const fetchTracks = async () => {
-            const topTrackData = await getTopTrack();
-            setTopTracks(topTrackData);
+            const { next, items, previous } = await getTopTracks();
+
+            setTopTracks(items);
+            setNextItems(next);
+            setPrevItems(previous);
         };
 
         fetchTracks();
     }, []);
 
+    const incrementOffset = async () => {
+        if (!nextItems) return;
+        const { next, items, previous } = await getTopTracks(nextItems);
+
+        setTopTracks(items);
+        setNextItems(next);
+        setPrevItems(previous);
+    };
+    const decrementOffset = async () => {
+        if (!prevItems) return;
+        const { next, items, previous } = await getTopTracks(prevItems);
+
+        setTopTracks(items);
+        setNextItems(next);
+        setPrevItems(previous);
+    };
+
     return topTracks ? (
         <div>
-            <h2 className="text-lg font-bold mb-5">Top Tracks</h2>
+            <div className="flex justify-between mb-4">
+                <h2 className="text-lg font-bold">Top Tracks</h2>
+                <div className="flex">
+                    <button
+                        onClick={decrementOffset}
+                        className="hover:bg-neutral-800 py-1 px-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+                        disabled={!prevItems}
+                    >
+                        &#60;
+                    </button>
+                    <button
+                        onClick={incrementOffset}
+                        className="hover:bg-neutral-800 py-1 px-2 rounded  disabled:opacity-50 disabled:cursor-not-allowed"
+                        disabled={!nextItems}
+                    >
+                        &#62;
+                    </button>
+                </div>
+            </div>
             <div className="flex flex-col gap-5">
-                {topTracks.items.map((track, i) => (
+                {topTracks.map((track, i) => (
                     <div
                         key={i}
                         className="w-[400px] flex items-center gap-4 text-sm"
