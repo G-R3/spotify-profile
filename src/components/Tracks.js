@@ -1,57 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { getTopTracks } from "../api";
 import { milliToMinutesAndSeconds } from "../utils/utils";
+import useGetItems from "../hooks/useGetItems";
 
 export default function Tracks() {
-    const [topTracks, setTopTracks] = useState("");
-    const [nextItems, setNextItems] = useState("");
-    const [prevItems, setPrevItems] = useState("");
-
-    useEffect(() => {
-        const fetchTracks = async () => {
-            const { next, items, previous } = await getTopTracks();
-
-            setTopTracks(items);
-            setNextItems(next);
-            setPrevItems(previous);
-        };
-
-        fetchTracks();
-    }, []);
-
-    const incrementOffset = async () => {
-        if (!nextItems) return;
-        const { next, items, previous } = await getTopTracks(nextItems);
-
-        setTopTracks(items);
-        setNextItems(next);
-        setPrevItems(previous);
-    };
-    const decrementOffset = async () => {
-        if (!prevItems) return;
-        const { next, items, previous } = await getTopTracks(prevItems);
-
-        setTopTracks(items);
-        setNextItems(next);
-        setPrevItems(previous);
-    };
-
+    const [topTracks, getNext, getPrevious, hasNext, hasPrevious] =
+        useGetItems(getTopTracks);
     return topTracks ? (
         <div>
             <div className="flex justify-between mb-4">
                 <h2 className="text-lg font-bold">Top Tracks</h2>
                 <div className="flex">
                     <button
-                        onClick={decrementOffset}
+                        onClick={getPrevious}
                         className="hover:bg-neutral-800 py-1 px-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
-                        disabled={!prevItems}
+                        disabled={!hasPrevious}
                     >
                         &#60;
                     </button>
                     <button
-                        onClick={incrementOffset}
+                        onClick={getNext}
                         className="hover:bg-neutral-800 py-1 px-2 rounded  disabled:opacity-50 disabled:cursor-not-allowed"
-                        disabled={!nextItems}
+                        disabled={!hasNext}
                     >
                         &#62;
                     </button>
