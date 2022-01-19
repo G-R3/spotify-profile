@@ -102,8 +102,9 @@ const getFollowing = async () => {
     return response.data.artists;
 };
 
-const getTopTracks = async (url) => {
-    if (!url) url = "https://api.spotify.com/v1/me/top/tracks?limit=5";
+const getTopTracks = async (
+    url = "https://api.spotify.com/v1/me/top/tracks?limit=5",
+) => {
     let response = await axios.get(url, {
         headers: {
             Authorization: `Bearer ${token}`,
@@ -111,8 +112,9 @@ const getTopTracks = async (url) => {
     });
     return response.data;
 };
-const getTopArtists = async (url) => {
-    if (!url) url = "https://api.spotify.com/v1/me/top/artists?limit=5";
+const getTopArtists = async (
+    url = "https://api.spotify.com/v1/me/top/artists?limit=5",
+) => {
     let response = await axios.get(url, {
         headers: {
             Authorization: `Bearer ${token}`,
