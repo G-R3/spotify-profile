@@ -62,7 +62,6 @@ app.get("/callback", async (req, res) => {
     const state = req.query.state || null;
     const storedState = req.cookies ? req.cookies[stateKey] : null;
     if (state === null || state !== storedState) {
-        console.log("ERROR in /callback");
         res.redirect(
             "http://localhost:3000/?" +
                 qs.stringify({
@@ -72,7 +71,6 @@ app.get("/callback", async (req, res) => {
     } else {
         res.clearCookie(stateKey);
 
-        console.log("Requesting access and refresh tokens...");
         let response = await axios({
             url: "https://accounts.spotify.com/api/token",
             method: "post",
@@ -90,9 +88,7 @@ app.get("/callback", async (req, res) => {
             },
         });
 
-        console.log("Status: ", response.status);
         if (response.status === 200 && !response.error) {
-            console.log(response.data);
             let { access_token, refresh_token, expires_in } = response.data;
 
             res.redirect(
