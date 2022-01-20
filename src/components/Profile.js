@@ -24,7 +24,7 @@ export default function User() {
         user && (
             <div>
                 <NavBar />
-                <main className="ml-52 py-10 ">
+                <main className="lg:ml-52 py-10 ">
                     <div className="flex flex-col gap-16">
                         <section className="flex flex-col items-center gap-2">
                             <img
@@ -54,12 +54,12 @@ export default function User() {
                                 </div>
                             </div>
                         </section>
-                        <section className="flex justify-evenly flex-col md:flex-row">
-                            <Artists />
-                            <Tracks />
-                        </section>
-                        <section className="flex flex-col gap-20">
-                            <div className="p-10">
+                        <section className="flex flex-col gap-14 max-w-5xl px-10 lg:mx-auto">
+                            <div className="flex flex-col gap-14 xl:flex-row xl:justify-between">
+                                <Artists />
+                                <Tracks />
+                            </div>
+                            <div>
                                 <Playlists />
                             </div>
                         </section>

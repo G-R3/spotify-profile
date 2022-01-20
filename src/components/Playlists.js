@@ -18,13 +18,13 @@ export default function Playlists() {
         playlists && (
             <>
                 <h2 className="text-lg font-bold mb-5">Your Albums</h2>
-                <div className="flex overflow-x-scroll gap-5 pb-10 slider-scrollbar">
+                <div className="flex overflow-x-scroll gap-5 pb-10 slider-scrollbar rounded-md">
                     {playlists.items.map((playlist, i) => (
                         <img
                             key={i}
                             src={playlist.images[0].url}
                             alt=""
-                            className="w-48 h-48"
+                            className="w-24 h-24 lg:w-48 lg:h-48"
                         />
                     ))}
                 </div>

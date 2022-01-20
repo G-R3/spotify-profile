@@ -27,16 +27,16 @@ export default function Tracks() {
                     </button>
                 </div>
             </div>
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-2">
                 {topTracks.map((track, i) => (
                     <div
                         key={i}
-                        className="w-[400px] flex items-center gap-4 text-sm"
+                        className="w-full xl:w-[400px] h-16 flex items-center gap-4 text-sm "
                     >
                         <img
                             src={track.album.images[0].url}
                             alt=""
-                            className="w-12 h-w-12"
+                            className="w-12 h-12"
                         />
                         <div className="w-full">
                             <h3 className="flex justify-between">

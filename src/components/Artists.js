@@ -27,11 +27,11 @@ export default function Artists() {
                     </button>
                 </div>
             </div>
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-2">
                 {topArtists.map((artist, i) => (
                     <div
                         key={i}
-                        className="w-[400px] flex items-center gap-4 text-sm"
+                        className="w-full lg:w-[400px] h-16 flex items-center gap-4 text-sm"
                     >
                         <img
                             src={artist.images[0].url}
