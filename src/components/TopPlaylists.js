@@ -17,7 +17,7 @@ export default function Playlists() {
     return (
         playlists && (
             <>
-                <h2 className="text-lg font-bold mb-5">Your Albums</h2>
+                <h2 className="text-lg font-bold mb-5">Your Playlists</h2>
                 <div className="flex overflow-x-scroll gap-5 pb-10 slider-scrollbar rounded-md">
                     {playlists.items.map((playlist, i) => (
                         <img
