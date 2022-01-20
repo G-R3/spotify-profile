@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import NavBar from "./Sidebar";
-import Tracks from "./Tracks";
-import Artists from "./Artists";
+import TopTracks from "./TopTracks";
+import TopArtists from "./TopArtists";
 import { getUser, getFollowing } from "../api";
-import Playlists from "./Playlists";
+import TopPlaylists from "./TopPlaylists";
 
 export default function User() {
     const [user, setUser] = useState("");
@@ -22,49 +21,44 @@ export default function User() {
     }, []);
     return (
         user && (
-            <div>
-                <NavBar />
-                <main className="lg:ml-52 py-10 ">
-                    <div className="flex flex-col gap-16">
-                        <section className="flex flex-col items-center gap-2">
-                            <img
-                                src={user.images[0].url}
-                                alt=""
-                                className="w-52 h-52 rounded-full"
-                            />
-                            <h1 className="my-3 text-xl font-semibold">
-                                Welcome @{user.display_name}
-                            </h1>
-                            <div className="flex justify-center items-center gap-3 h-10">
-                                <div className="bg-neutral-800 rounded-md py-2 px-5 text-sm text-center">
-                                    <p className="text-neutral-400 font-semibold">
-                                        Followers
-                                    </p>
-                                    <span className="text-spotify-green block font-bold">
-                                        {user.followers.total}
-                                    </span>
-                                </div>
-                                <div className="bg-neutral-800 rounded-md py-2 px-5 text-sm text-center">
-                                    <p className="text-neutral-400 font-semibold">
-                                        Following
-                                    </p>
-                                    <span className="text-spotify-green block font-bold">
-                                        {following.total}
-                                    </span>
-                                </div>
-                            </div>
-                        </section>
-                        <section className="flex flex-col gap-14 max-w-5xl px-10 lg:mx-auto">
-                            <div className="flex flex-col gap-14 xl:flex-row xl:justify-between">
-                                <Artists />
-                                <Tracks />
-                            </div>
-                            <div>
-                                <Playlists />
-                            </div>
-                        </section>
+            <div className="flex flex-col gap-16">
+                <section className="flex flex-col items-center gap-2">
+                    <img
+                        src={user.images[0].url}
+                        alt=""
+                        className="w-52 h-52 rounded-full"
+                    />
+                    <h1 className="my-3 text-xl font-semibold">
+                        Welcome @{user.display_name}
+                    </h1>
+                    <div className="flex justify-center items-center gap-3 h-10">
+                        <div className="bg-neutral-800 rounded-md py-2 px-5 text-sm text-center">
+                            <p className="text-neutral-400 font-semibold">
+                                Followers
+                            </p>
+                            <span className="text-spotify-green block font-bold">
+                                {user.followers.total}
+                            </span>
+                        </div>
+                        <div className="bg-neutral-800 rounded-md py-2 px-5 text-sm text-center">
+                            <p className="text-neutral-400 font-semibold">
+                                Following
+                            </p>
+                            <span className="text-spotify-green block font-bold">
+                                {following.total}
+                            </span>
+                        </div>
                     </div>
-                </main>
+                </section>
+                <section className="flex flex-col gap-14 max-w-5xl px-10 lg:mx-auto">
+                    <div className="flex flex-col gap-14 xl:flex-row xl:justify-between">
+                        <TopArtists />
+                        <TopTracks />
+                    </div>
+                    <div>
+                        <TopPlaylists />
+                    </div>
+                </section>
             </div>
         )
     );
