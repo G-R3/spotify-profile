@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import Login from "./Login";
 import Profile from "./Profile";
+import Layout from "./Layout";
 import token from "../api/index";
+import Playlists from "./Playlists";
+import TracksList from "./TracksList";
 
 function App() {
     const [accessToken, setAccessToken] = useState("");
@@ -11,7 +15,15 @@ function App() {
     }, []);
 
     return (
-        <div className="h-full">{accessToken ? <Profile /> : <Login />}</div>
+        <div className="h-full">
+            <Routes>
+                <Route path="/" element={accessToken ? <Layout /> : <Login />}>
+                    <Route index element={<Profile />} />
+                    <Route path="/playlists" element={<Playlists />} />
+                    <Route path="/tracks" element={<TracksList />} />
+                </Route>
+            </Routes>
+        </div>
     );
 }
 
