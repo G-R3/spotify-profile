@@ -1,24 +1,29 @@
 import React, { useEffect, useState } from "react";
 import TopTracks from "./TopTracks";
 import TopArtists from "./TopArtists";
-import { getUser, getFollowing } from "../api";
+import { getUserData } from "../api";
 import TopPlaylists from "./TopPlaylists";
 
 export default function User() {
     const [user, setUser] = useState("");
     const [following, setFollowing] = useState("");
+    const [topTracks, setTopTracks] = useState("");
+    const [topArtists, setTopArtists] = useState("");
 
     useEffect(() => {
         const fetchUser = async () => {
-            const data = await getUser();
-            const followingData = await getFollowing();
+            const { user, following, topArtists, topTracks } =
+                await getUserData();
 
-            setUser(data);
-            setFollowing(followingData);
+            setFollowing(following.artists.total);
+            setTopArtists(topArtists);
+            setTopTracks(topTracks);
+            setUser(user);
         };
 
         fetchUser();
     }, []);
+
     return (
         user && (
             <div className="flex flex-col gap-16">
@@ -45,15 +50,15 @@ export default function User() {
                                 Following
                             </p>
                             <span className="text-spotify-green block font-bold">
-                                {following.total}
+                                {following}
                             </span>
                         </div>
                     </div>
                 </section>
                 <section className="flex flex-col gap-14 max-w-5xl px-10 lg:mx-auto">
                     <div className="flex flex-col gap-14 xl:flex-row xl:justify-between">
-                        <TopArtists />
-                        <TopTracks />
+                        <TopArtists artists={topArtists} />
+                        <TopTracks tracks={topTracks} />
                     </div>
                     <div>
                         <TopPlaylists />
