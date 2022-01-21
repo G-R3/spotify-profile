@@ -80,48 +80,69 @@ export default token;
 
 // if we don't have a token this will throw out a 401 error
 const getUser = async () => {
-    let response = await axios.get("https://api.spotify.com/v1/me", {
+    // let response = await axios.get("https://api.spotify.com/v1/me", {
+    //     headers: {
+    //         Authorization: `Bearer ${token}`,
+    //     },
+    // });
+
+    // return response.data;
+
+    return axios.get("https://api.spotify.com/v1/me", {
         headers: {
             Authorization: `Bearer ${token}`,
         },
     });
-
-    return response.data;
 };
 
 const getFollowing = async () => {
-    let response = await axios.get(
-        "https://api.spotify.com/v1/me/following?type=artist",
-        {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
+    return axios.get("https://api.spotify.com/v1/me/following?type=artist", {
+        headers: {
+            Authorization: `Bearer ${token}`,
         },
-    );
+    });
+    // let response = await axios.get(
+    //     "https://api.spotify.com/v1/me/following?type=artist",
+    //     {
+    //         headers: {
+    //             Authorization: `Bearer ${token}`,
+    //         },
+    //     },
+    // );
 
-    return response.data.artists;
+    // return response.data.artists;
 };
 
 const getTopTracks = async (
     url = "https://api.spotify.com/v1/me/top/tracks?limit=5",
 ) => {
-    let response = await axios.get(url, {
+    // let response = await axios.get(url, {
+    //     headers: {
+    //         Authorization: `Bearer ${token}`,
+    //     },
+    // });
+    // return response.data;
+    return axios.get(url, {
         headers: {
             Authorization: `Bearer ${token}`,
         },
     });
-    return response.data;
 };
 const getTopArtists = async (
     url = "https://api.spotify.com/v1/me/top/artists?limit=5",
 ) => {
-    let response = await axios.get(url, {
+    // let response = await axios.get(url, {
+    //     headers: {
+    //         Authorization: `Bearer ${token}`,
+    //     },
+    // });
+    // console.log(response.data);
+    // return response.data;
+    return await axios.get(url, {
         headers: {
             Authorization: `Bearer ${token}`,
         },
     });
-    console.log(response.data);
-    return response.data;
 };
 const getUserPlaylist = async () => {
     let response = await axios.get("https://api.spotify.com/v1/me/playlists", {
@@ -133,4 +154,31 @@ const getUserPlaylist = async () => {
     return response.data;
 };
 
-export { getUser, getFollowing, getTopTracks, getTopArtists, getUserPlaylist };
+const getItems = async (url) => {
+    let response = await axios.get(url, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+
+    return response.data;
+};
+
+const getUserData = () => {
+    return axios
+        .all([getUser(), getFollowing(), getTopArtists(), getTopTracks()])
+        .then(
+            axios.spread((user, following, artists, tracks) => {
+                const data = {
+                    user: user.data,
+                    following: following.data,
+                    topArtists: artists.data,
+                    topTracks: tracks.data,
+                };
+
+                return data;
+            }),
+        );
+};
+
+export { getUserData, getUserPlaylist, getItems };
