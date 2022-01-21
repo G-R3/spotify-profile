@@ -80,14 +80,6 @@ export default token;
 
 // if we don't have a token this will throw out a 401 error
 const getUser = async () => {
-    // let response = await axios.get("https://api.spotify.com/v1/me", {
-    //     headers: {
-    //         Authorization: `Bearer ${token}`,
-    //     },
-    // });
-
-    // return response.data;
-
     return axios.get("https://api.spotify.com/v1/me", {
         headers: {
             Authorization: `Bearer ${token}`,
@@ -101,48 +93,24 @@ const getFollowing = async () => {
             Authorization: `Bearer ${token}`,
         },
     });
-    // let response = await axios.get(
-    //     "https://api.spotify.com/v1/me/following?type=artist",
-    //     {
-    //         headers: {
-    //             Authorization: `Bearer ${token}`,
-    //         },
-    //     },
-    // );
-
-    // return response.data.artists;
 };
 
-const getTopTracks = async (
-    url = "https://api.spotify.com/v1/me/top/tracks?limit=5",
-) => {
-    // let response = await axios.get(url, {
-    //     headers: {
-    //         Authorization: `Bearer ${token}`,
-    //     },
-    // });
-    // return response.data;
-    return axios.get(url, {
+const getTopTracks = async () => {
+    return axios.get("https://api.spotify.com/v1/me/top/tracks?limit=5", {
         headers: {
             Authorization: `Bearer ${token}`,
         },
     });
 };
-const getTopArtists = async (
-    url = "https://api.spotify.com/v1/me/top/artists?limit=5",
-) => {
-    // let response = await axios.get(url, {
-    //     headers: {
-    //         Authorization: `Bearer ${token}`,
-    //     },
-    // });
-    // console.log(response.data);
-    // return response.data;
-    return await axios.get(url, {
-        headers: {
-            Authorization: `Bearer ${token}`,
+const getTopArtists = async () => {
+    return await axios.get(
+        "https://api.spotify.com/v1/me/top/artists?limit=5",
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
         },
-    });
+    );
 };
 const getUserPlaylists = async () => {
     let response = await axios.get("https://api.spotify.com/v1/me/playlists", {
