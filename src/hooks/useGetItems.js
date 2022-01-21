@@ -1,38 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { getItems } from "../api";
 
-export default function useGetItems(getItems) {
-    const [items, setItems] = useState("");
-    const [nextItems, setNextItems] = useState("");
-    const [prevItems, setPrevItems] = useState("");
+export default function useGetItems(initialData) {
+    const [data, setData] = useState(initialData);
 
-    useEffect(() => {
-        const fetchTracks = async () => {
-            const { next, items, previous } = await getItems();
+    const getNext = async (url) => {
+        if (!url) return;
+        const data = await getItems(url);
 
-            setItems(items);
-            setNextItems(next);
-            setPrevItems(previous);
-        };
-
-        fetchTracks();
-    }, [getItems]);
-
-    const incrementOffset = async () => {
-        if (!nextItems) return;
-        const { next, items, previous } = await getItems(nextItems);
-
-        setItems(items);
-        setNextItems(next);
-        setPrevItems(previous);
+        setData(data);
     };
-    const decrementOffset = async () => {
-        if (!prevItems) return;
-        const { next, items, previous } = await getItems(prevItems);
+    const getPrevious = async (url) => {
+        if (!url) return;
+        const data = await getItems(url);
 
-        setItems(items);
-        setNextItems(next);
-        setPrevItems(previous);
+        setData(data);
     };
 
-    return [items, incrementOffset, decrementOffset, nextItems, prevItems];
+    return { data, getNext, getPrevious };
 }
