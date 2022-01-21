@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getUserPlaylist } from "../api/index";
 
-export default function Playlists() {
+export default function TopPlaylists() {
     const [playlists, setPlaylists] = useState("");
 
     useEffect(() => {
