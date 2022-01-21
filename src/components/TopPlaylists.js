@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { getUserPlaylist } from "../api/index";
+import { getUserPlaylists } from "../api/index";
 
 export default function TopPlaylists() {
     const [playlists, setPlaylists] = useState("");
 
     useEffect(() => {
         const fetchPlaylists = async () => {
-            const playlistsData = await getUserPlaylist();
+            const playlistsData = await getUserPlaylists();
 
             setPlaylists(playlistsData);
         };
