@@ -1,34 +1,32 @@
 import React from "react";
 import useGetItems from "../hooks/useGetItems";
-import { getTopArtists } from "../api";
 
-export default function Artists() {
-    const [topArtists, getNext, getPrevious, hasNext, hasPrevious] =
-        useGetItems(getTopArtists);
+export default function TopArtists({ artists }) {
+    let { data, getNext, getPrevious } = useGetItems(artists);
 
-    return topArtists ? (
+    return data ? (
         <div>
             <div className="flex justify-between items-center mb-4">
                 <h2 className="text-lg font-bold">Top Artists</h2>
                 <div className="">
                     <button
-                        onClick={getPrevious}
+                        onClick={() => getPrevious(data.previous)}
                         className="hover:bg-neutral-800 py-1 px-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
-                        disabled={!hasPrevious}
+                        disabled={!data.previous}
                     >
                         &#60;
                     </button>
                     <button
-                        onClick={getNext}
+                        onClick={() => getNext(data.next)}
                         className="hover:bg-neutral-800 py-1 px-2 rounded  disabled:opacity-50 disabled:cursor-not-allowed"
-                        disabled={!hasNext}
+                        disabled={!data.next}
                     >
                         &#62;
                     </button>
                 </div>
             </div>
             <div className="flex flex-col gap-2">
-                {topArtists.map((artist, i) => (
+                {data.items.map((artist, i) => (
                     <div
                         key={i}
                         className="w-full lg:w-[400px] h-16 flex items-center gap-4 text-sm"
@@ -44,6 +42,6 @@ export default function Artists() {
             </div>
         </div>
     ) : (
-        <p>Loading...</p>
+        <p className="w-full lg:w-[400px] h-16 text-center">Loading...</p>
     );
 }

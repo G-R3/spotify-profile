@@ -1,34 +1,33 @@
 import React from "react";
-import { getTopTracks } from "../api";
 import { milliToMinutesAndSeconds } from "../utils/utils";
 import useGetItems from "../hooks/useGetItems";
 
-export default function Tracks() {
-    const [topTracks, getNext, getPrevious, hasNext, hasPrevious] =
-        useGetItems(getTopTracks);
-    return topTracks ? (
+export default function TopTracks({ tracks }) {
+    let { data, getNext, getPrevious } = useGetItems(tracks);
+
+    return data ? (
         <div>
             <div className="flex justify-between mb-4">
                 <h2 className="text-lg font-bold">Top Tracks</h2>
                 <div className="flex">
                     <button
-                        onClick={getPrevious}
+                        onClick={() => getPrevious(data.previous)}
                         className="hover:bg-neutral-800 py-1 px-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
-                        disabled={!hasPrevious}
+                        disabled={!data.previous}
                     >
                         &#60;
                     </button>
                     <button
-                        onClick={getNext}
+                        onClick={() => getNext(data.next)}
                         className="hover:bg-neutral-800 py-1 px-2 rounded  disabled:opacity-50 disabled:cursor-not-allowed"
-                        disabled={!hasNext}
+                        disabled={!data.next}
                     >
                         &#62;
                     </button>
                 </div>
             </div>
             <div className="flex flex-col gap-2">
-                {topTracks.map((track, i) => (
+                {data.items.map((track, i) => (
                     <div
                         key={i}
                         className="w-full xl:w-[400px] h-16 flex items-center gap-4 text-sm "
@@ -56,6 +55,6 @@ export default function Tracks() {
             </div>
         </div>
     ) : (
-        <p>Loading...</p>
+        <p className="w-full lg:w-[400px] h-16 text-center">Loading...</p>
     );
 }
