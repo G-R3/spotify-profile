@@ -3,7 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 import { getUserPlaylists } from "../api";
 
 export default function Playlists() {
-    const [playlists, setPlaylists] = useState("");
+    let [playlists, setPlaylists] = useState("");
     useEffect(() => {
         const fetchAllPlaylists = async () => {
             const { items } = await getUserPlaylists();
@@ -17,20 +17,26 @@ export default function Playlists() {
     return playlists ? (
         <div className="px-5 mx-auto max-w-5xl">
             <h1 className="text-lg font-bold mb-5">Your Playlists</h1>
-            <div className="flex flex-wrap gap-10">
+            <div className="flex overflow-x-scroll  gap-5 pb-10 slider-scrollbar rounded-md">
                 {playlists.map((playlist, i) => (
-                    <Link key={i} to={`/playlists/${playlist.id}`}>
-                        <img
-                            src={playlist.images[0].url}
-                            alt=""
-                            className="w-24 h-24 lg:w-48 lg:h-48"
-                        />
-                    </Link>
+                    <div className="" key={i}>
+                        <Link
+                            to={`/playlists/${playlist.id}`}
+                            className="flex w-24 h-24 lg:w-48 lg:h-48"
+                        >
+                            <img
+                                src={playlist.images[0].url}
+                                alt=""
+                                className="w-full"
+                            />
+                        </Link>
+                    </div>
                 ))}
             </div>
+
             <Outlet />
         </div>
     ) : (
-        <h1>Loading...</h1>
+        <p className="text-center">Loading...</p>
     );
 }
