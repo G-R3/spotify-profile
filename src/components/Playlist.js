@@ -4,6 +4,9 @@ import { useState } from "react/cjs/react.development";
 import { getPlaylist } from "../api";
 import { milliToMinutesAndSeconds } from "../utils/utils";
 
+// DELETE THIS: because fetching a single playlist has a limit of 100 songs, we should add a button or a link saying something like "View on Spotify" which will redirect the user to the spotify playlist to see all the songs. This link should be a the top so that the user doesn't have to scroll all the way to the button. Or not.
+// Or we can figure out a way to fetch the rest of the songs in a a playlist. We are giving a next property to get the next batch. So we can do something where when a user scrolls far enough we get and display the next batch.
+
 export default function Playlist() {
     let { playlistId } = useParams();
     const [playlist, setPlaylist] = useState("");
@@ -49,7 +52,7 @@ export default function Playlist() {
                 </div>
             </div>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col">
                 {playlist.tracks.items.map((item, i) => (
                     <div
                         key={i}
