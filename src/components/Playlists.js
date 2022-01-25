@@ -17,7 +17,7 @@ export default function Playlists() {
     return playlists ? (
         <div className="px-5 mx-auto max-w-5xl">
             <h1 className="text-lg font-bold mb-5">Your Playlists</h1>
-            <div className="flex overflow-x-scroll  gap-5 pb-10 slider-scrollbar rounded-md">
+            <div className="flex overflow-x-scroll gap-5 pb-10 slider-scrollbar rounded-md">
                 {playlists.map((playlist, i) => (
                     <div className="" key={i}>
                         <Link

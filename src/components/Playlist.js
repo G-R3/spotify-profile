@@ -22,8 +22,8 @@ export default function Playlist() {
     }, [playlistId]);
 
     return playlist && !isLoading ? (
-        <div className="mt-20 max-h-[200px] w-full flex flex-col gap-12">
-            <div className="flex flex-col gap-8 md:items-end md:flex-row">
+        <div className="w-full">
+            <div className="mt-20 mb-10 max-h-[200px] flex flex-col gap-8 md:items-end md:flex-row">
                 <img
                     src={playlist.images[0].url}
                     alt=""
@@ -38,39 +38,55 @@ export default function Playlist() {
                         {playlist.name}
                     </h1>
                     <div>
-                        <span className="text-sm">
-                            {playlist.owner.display_name} -{" "}
-                            {playlist.tracks.total} Songs
-                        </span>
+                        <p className="text-sm">
+                            {playlist.owner.display_name} -
+                            <span className="text-neutral-400">
+                                {" "}
+                                {playlist.tracks.total} Songs
+                            </span>
+                        </p>
                     </div>
                 </div>
             </div>
 
             <div className="flex flex-col gap-2">
                 {playlist.tracks.items.map((item, i) => (
-                    <div
+                    <a
+                        href={item.track.uri}
                         key={i}
-                        className="w-full h-16 flex items-center gap-4 text-sm "
+                        className="hover:bg-neutral-800 rounded-md"
                     >
-                        <img
-                            src={item.track.album.images[0]?.url}
-                            alt=""
-                            className="w-12 h-12"
-                        />
-                        <div className="w-full">
-                            <h3 className="flex justify-between">
-                                {item.track.name}
-                                <span className=" text-neutral-400">
-                                    {milliToMinutesAndSeconds(
-                                        item.track.duration_ms,
-                                    )}
+                        <div className="h-16 p-3 flex items-center justify-between gap-4 text-sm">
+                            <div className="flex gap-5 items-center">
+                                <span className="text-neutral-400 font-semibold text-xs">
+                                    {i + 1}
                                 </span>
-                            </h3>
-                            <span className="text-xs text-neutral-400">
-                                {item.track.artists[0].name}
+                                <img
+                                    src={item.track.album.images[0]?.url}
+                                    alt=""
+                                    className="w-10 h-10"
+                                />
+                                <div className="">
+                                    <h3 className="flex justify-between min-w-[25ch] w-[35ch]">
+                                        <span className="truncate">
+                                            {item.track.name}
+                                        </span>
+                                    </h3>
+                                    <span className="text-xs text-neutral-400">
+                                        {item.track.artists[0].name}
+                                    </span>
+                                </div>
+                            </div>
+                            <span className="min-w-[25ch] w-[35ch] truncate text-xs text-neutral-400">
+                                {item.track.album.name}
+                            </span>
+                            <span className=" text-neutral-400">
+                                {milliToMinutesAndSeconds(
+                                    item.track.duration_ms,
+                                )}
                             </span>
                         </div>
-                    </div>
+                    </a>
                 ))}
             </div>
         </div>
