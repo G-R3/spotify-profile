@@ -67,7 +67,20 @@ export default function Playlist() {
                             <div className="">
                                 <h3 className="flex justify-between min-w-[25ch] w-[35ch]">
                                     <span className="truncate">
-                                        {item.track.name}
+                                        {item.track.external_urls.spotify ? (
+                                            <a
+                                                href={
+                                                    item.track.external_urls
+                                                        .spotify
+                                                }
+                                                target={"_blank"}
+                                                rel="noreferrer"
+                                            >
+                                                {item.track.name}
+                                            </a>
+                                        ) : (
+                                            item.track.name
+                                        )}
                                     </span>
                                 </h3>
                                 <span className="text-xs text-neutral-400 hover:underline hover:underline-offset-1 group-hover:text-white">
