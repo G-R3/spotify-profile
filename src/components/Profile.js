@@ -55,7 +55,7 @@ export default function User() {
                         </div>
                     </div>
                 </section>
-                <section className="flex flex-col gap-14 max-w-5xl px-10 lg:mx-auto">
+                <section className="flex flex-col gap-14 px-10 lg:mx-auto">
                     <div className="flex flex-col gap-14 xl:flex-row xl:justify-between">
                         <TopArtists artists={topArtists} />
                         <TopTracks tracks={topTracks} />
