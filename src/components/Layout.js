@@ -4,11 +4,11 @@ import NavBar from "./Sidebar";
 
 export default function Layout() {
     return (
-        <>
+        <div className="min-h-screen">
             <NavBar />
-            <main className="lg:ml-52 py-10">
+            <main className="pb-10 pt-20 px-5 md:ml-52">
                 <Outlet />
             </main>
-        </>
+        </div>
     );
 }
