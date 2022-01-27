@@ -29,7 +29,7 @@ export default function TopArtists({ artists }) {
                 {data.items.map((artist, i) => (
                     <div
                         key={i}
-                        className="w-full lg:w-[400px] h-16 flex items-center gap-4 text-sm"
+                        className="w-full xl:w-[400px] h-16 flex items-center gap-4 text-sm"
                     >
                         <img
                             src={artist.images[0].url}
