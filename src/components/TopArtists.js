@@ -1,5 +1,6 @@
 import React from "react";
 import useGetItems from "../hooks/useGetItems";
+import Artist from "./Artist";
 
 export default function TopArtists({ artists }) {
     let { data, getNext, getPrevious } = useGetItems(artists);
@@ -27,17 +28,7 @@ export default function TopArtists({ artists }) {
             </div>
             <div className="flex flex-col gap-2">
                 {data.items.map((artist, i) => (
-                    <div
-                        key={i}
-                        className="w-full xl:w-[400px] h-16 flex items-center gap-4 text-sm"
-                    >
-                        <img
-                            src={artist.images[0].url}
-                            alt=""
-                            className="w-12 h-12 rounded-full"
-                        />
-                        <h3 className="flex justify-between">{artist.name}</h3>
-                    </div>
+                    <Artist artist={artist} key={i} />
                 ))}
             </div>
         </div>
