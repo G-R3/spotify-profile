@@ -27,49 +27,10 @@ export default function Sidebar() {
                 </li>
                 <li className="hover:bg-neutral-800">
                     <Link to="/playlists" className="py-1 px-4 block text-lg">
-                        Playlist
-                    </Link>
-                </li>
-                <li className="hover:bg-neutral-800">
-                    <Link to="/tracks" className="py-1 px-4 block text-lg">
-                        Tracks
+                        Playlists
                     </Link>
                 </li>
             </ul>
         </nav>
     );
 }
-
-/*
- <nav className="bg-black w-full md:w-52 px-2">
-            <span className="text-2xl font-bold px-3 py-6 inline-block">
-                SpotifyStats
-            </span>
-
-            <ul className="sidebar md:block -translate-x-full bg-red-50">
-                <li className="hover:bg-neutral-800 rounded-sm">
-                    <Link to="/" className="py-1 px-3 w-full block text-lg">
-                        Profile
-                    </Link>
-                </li>
-                <li className="hover:bg-neutral-800 rounded-sm">
-                    <Link
-                        to="/playlists"
-                        className="py-1 px-3 w-full block text-lg"
-                    >
-                        Playlists
-                    </Link>
-                </li>
-                <li className="hover:bg-neutral-800 rounded-sm">
-                    <Link
-                        to="/tracks"
-                        className="py-1 px-3 w-full block text-lg"
-                    >
-                        Tracks
-                    </Link>
-                </li>
-            </ul>
-            <button onClick={expand}>Expand</button>
-        </nav>
-
-*/
