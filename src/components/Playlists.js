@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { getUserPlaylists } from "../api";
+import Loader from "./Loader";
 
 export default function Playlists() {
     let [playlists, setPlaylists] = useState("");
@@ -37,6 +38,6 @@ export default function Playlists() {
             <Outlet />
         </div>
     ) : (
-        <p className="text-center">Loading...</p>
+        <Loader />
     );
 }

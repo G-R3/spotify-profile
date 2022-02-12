@@ -3,6 +3,7 @@ import TopTracks from "./TopTracks";
 import TopArtists from "./TopArtists";
 import { getUserData } from "../api";
 import TopPlaylists from "./TopPlaylists";
+import Loader from "./Loader";
 
 export default function User() {
     const [user, setUser] = useState("");
@@ -24,47 +25,47 @@ export default function User() {
         fetchUser();
     }, []);
 
+    if (!user || !following || !topTracks || !topArtists) return <Loader />;
+
     return (
-        user && (
-            <div className="flex flex-col gap-16">
-                <section className="flex flex-col items-center gap-2">
-                    <img
-                        src={user.images[0].url}
-                        alt=""
-                        className="w-52 h-52 rounded-full"
-                    />
-                    <h1 className="my-3 text-xl font-semibold">
-                        Welcome @{user.display_name}
-                    </h1>
-                    <div className="flex justify-center items-center gap-3 h-10">
-                        <div className="bg-neutral-800 rounded-md py-2 px-5 text-sm text-center">
-                            <p className="text-neutral-400 font-semibold">
-                                Followers
-                            </p>
-                            <span className="text-spotify-green block font-bold">
-                                {user.followers.total}
-                            </span>
-                        </div>
-                        <div className="bg-neutral-800 rounded-md py-2 px-5 text-sm text-center">
-                            <p className="text-neutral-400 font-semibold">
-                                Following
-                            </p>
-                            <span className="text-spotify-green block font-bold">
-                                {following}
-                            </span>
-                        </div>
+        <div className="flex flex-col gap-16">
+            <section className="flex flex-col items-center gap-2">
+                <img
+                    src={user.images[0].url}
+                    alt=""
+                    className="w-52 h-52 rounded-full"
+                />
+                <h1 className="my-3 text-xl font-semibold">
+                    Welcome @{user.display_name}
+                </h1>
+                <div className="flex justify-center items-center gap-3 h-10">
+                    <div className="bg-neutral-800 rounded-md py-2 px-5 text-sm text-center">
+                        <p className="text-neutral-400 font-semibold">
+                            Followers
+                        </p>
+                        <span className="text-spotify-green block font-bold">
+                            {user.followers.total}
+                        </span>
                     </div>
-                </section>
-                <section className="flex flex-col gap-14 px-10 lg:mx-auto max-w-7xl">
-                    <div className="flex flex-col gap-14 xl:flex-row xl:justify-between">
-                        <TopArtists artists={topArtists} />
-                        <TopTracks tracks={topTracks} />
+                    <div className="bg-neutral-800 rounded-md py-2 px-5 text-sm text-center">
+                        <p className="text-neutral-400 font-semibold">
+                            Following
+                        </p>
+                        <span className="text-spotify-green block font-bold">
+                            {following}
+                        </span>
                     </div>
-                    <div>
-                        <TopPlaylists />
-                    </div>
-                </section>
-            </div>
-        )
+                </div>
+            </section>
+            <section className="flex flex-col gap-14 px-10 lg:mx-auto max-w-7xl">
+                <div className="flex flex-col gap-14 xl:flex-row xl:justify-between">
+                    <TopArtists artists={topArtists} />
+                    <TopTracks tracks={topTracks} />
+                </div>
+                <div>
+                    <TopPlaylists />
+                </div>
+            </section>
+        </div>
     );
 }

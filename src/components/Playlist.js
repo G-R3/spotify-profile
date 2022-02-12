@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useState } from "react/cjs/react.development";
 import { getPlaylist } from "../api";
+import Loader from "./Loader";
 import PlaylistTracks from "./PlaylistTracks";
 
 export default function Playlist() {
@@ -56,6 +57,6 @@ export default function Playlist() {
             </div>
         </div>
     ) : (
-        <p className="text-center">Loading...</p>
+        <Loader />
     );
 }
