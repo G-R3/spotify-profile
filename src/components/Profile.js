@@ -38,7 +38,7 @@ export default function User() {
                 <h1 className="my-3 text-xl font-semibold">
                     Welcome @{user.display_name}
                 </h1>
-                <div className="flex justify-center items-center gap-3 h-10">
+                <div className="flex justify-center items-center gap-8 h-10">
                     <div className="bg-neutral-800 rounded-md py-2 px-5 text-sm text-center">
                         <p className="text-neutral-400 font-semibold">
                             Followers
