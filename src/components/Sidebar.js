@@ -30,6 +30,11 @@ export default function Sidebar() {
                         Playlists
                     </Link>
                 </li>
+                <li className="hover:bg-neutral-800">
+                    <Link to="/browse" className="py-1 px-4 block text-lg">
+                        Browse
+                    </Link>
+                </li>
             </ul>
         </nav>
     );

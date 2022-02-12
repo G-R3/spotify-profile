@@ -119,6 +119,8 @@ const getUserPlaylists = async () => {
         },
     });
 
+    console.log(response);
+
     return response.data;
 };
 
@@ -145,6 +147,19 @@ const getItems = async (url) => {
     return response.data;
 };
 
+const getFeaturedPlaylists = async () => {
+    const response = await axios.get(
+        "https://api.spotify.com/v1/browse/featured-playlists",
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        },
+    );
+
+    return response.data;
+};
+
 const getUserData = () => {
     return axios
         .all([getUser(), getFollowing(), getTopArtists(), getTopTracks()])
@@ -162,4 +177,10 @@ const getUserData = () => {
         );
 };
 
-export { getUserData, getUserPlaylists, getPlaylist, getItems };
+export {
+    getUserData,
+    getUserPlaylists,
+    getPlaylist,
+    getItems,
+    getFeaturedPlaylists,
+};

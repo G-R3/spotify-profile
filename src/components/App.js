@@ -6,7 +6,7 @@ import Layout from "./Layout";
 import token from "../api/index";
 import Playlists from "./Playlists";
 import Playlist from "./Playlist";
-import TracksList from "./TracksList";
+import Browse from "./Browse";
 
 function App() {
     const [accessToken, setAccessToken] = useState("");
@@ -23,7 +23,7 @@ function App() {
                     <Route path="/playlists" element={<Playlists />}>
                         <Route path=":playlistId" element={<Playlist />} />
                     </Route>
-                    <Route path="/tracks" element={<TracksList />} />
+                    <Route path="/browse" element={<Browse />} />
                 </Route>
             </Routes>
         </div>
