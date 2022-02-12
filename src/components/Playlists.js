@@ -22,11 +22,12 @@ export default function Playlists() {
                 {playlists.map((playlist, i) => (
                     <div key={i}>
                         <Link
+                            key={playlist.id}
                             to={`/playlists/${playlist.id}`}
                             className="flex w-24 h-24 lg:w-48 lg:h-48"
                         >
                             <img
-                                src={playlist.images[0].url}
+                                src={playlist.images[0]?.url}
                                 alt=""
                                 className="w-full"
                             />

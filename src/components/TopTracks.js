@@ -29,7 +29,7 @@ export default function TopTracks({ tracks }) {
             <div className="flex flex-col gap-2">
                 {data.items.map((track, i) => (
                     <div
-                        key={i}
+                        key={track.id ? track.id : i}
                         className="w-full xl:w-[400px] h-16 flex items-center gap-4 text-sm "
                     >
                         <img

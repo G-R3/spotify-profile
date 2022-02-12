@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { getUserPlaylists } from "../api/index";
 import { getItems } from "../api/index";
 import Loader from "./Loader";
@@ -34,12 +35,17 @@ export default function TopPlaylists() {
             </div>
             <div className="grid grid-cols-4 gap-5">
                 {playlists.items.map((playlist, i) => (
-                    <img
-                        key={i}
-                        src={playlist.images[0]?.url}
-                        alt=""
-                        className="w-24 h-24 lg:w-48 lg:h-48"
-                    />
+                    <Link
+                        key={playlist.id}
+                        to={`/playlists/${playlist.id}`}
+                        className="flex w-24 h-24 lg:w-48 lg:h-48"
+                    >
+                        <img
+                            src={playlist.images[0]?.url}
+                            alt=""
+                            className="w-24 h-24 lg:w-48 lg:h-48"
+                        />
+                    </Link>
                 ))}
             </div>
             {playlists.next && (

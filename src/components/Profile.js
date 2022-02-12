@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import TopTracks from "./TopTracks";
 import TopArtists from "./TopArtists";
 import { getUserData } from "../api";
-import TopPlaylists from "./TopPlaylists";
+import TopPlaylists from "./UserPlaylists";
 import Loader from "./Loader";
 
 export default function User() {

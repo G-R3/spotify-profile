@@ -28,7 +28,7 @@ export default function TopArtists({ artists }) {
             </div>
             <div className="flex flex-col gap-2">
                 {data.items.map((artist, i) => (
-                    <Artist artist={artist} key={i} />
+                    <Artist artist={artist} key={artist.id} />
                 ))}
             </div>
         </div>

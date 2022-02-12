@@ -26,7 +26,7 @@ export default function Playlist() {
         <div>
             <div className="mt-20 mb-10 flex flex-col gap-8 md:items-end md:flex-row md:max-h-[200px]">
                 <img
-                    src={playlist.images[0].url}
+                    src={playlist.images[0]?.url}
                     alt=""
                     className="w-48 h-48"
                 />
@@ -52,7 +52,11 @@ export default function Playlist() {
 
             <div className="flex flex-col w-full">
                 {playlist.tracks.items.map((item, i) => (
-                    <PlaylistTracks key={i} track={item} index={i} />
+                    <PlaylistTracks
+                        key={item.track.id ? item.track.id : i}
+                        track={item}
+                        index={i}
+                    />
                 ))}
             </div>
         </div>
