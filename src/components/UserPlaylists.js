@@ -6,6 +6,7 @@ import Loader from "./Loader";
 
 export default function TopPlaylists() {
     const [playlists, setPlaylists] = useState("");
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchPlaylists = async () => {
@@ -17,12 +18,14 @@ export default function TopPlaylists() {
     }, []);
 
     const getNext = async (url) => {
+        setLoading(true);
         const { items, next, total } = await getItems(url);
         setPlaylists((prevState) => ({
             items: [...prevState.items, ...items],
             next,
             total,
         }));
+        setLoading(false);
     };
 
     return playlists ? (
@@ -48,14 +51,17 @@ export default function TopPlaylists() {
                     </Link>
                 ))}
             </div>
-            {playlists.next && (
-                <button
-                    onClick={() => getNext(playlists.next)}
-                    className="bg-neutral-800 text-spotify-green my-5 mx-auto block p-2 rounded-md"
-                >
-                    Load More
-                </button>
-            )}
+            {playlists.next &&
+                (loading ? (
+                    <Loader />
+                ) : (
+                    <button
+                        onClick={() => getNext(playlists.next)}
+                        className="bg-neutral-800 text-spotify-green mt-8 mx-auto block p-2 rounded-md"
+                    >
+                        Load More
+                    </button>
+                ))}
         </>
     ) : (
         <Loader />
