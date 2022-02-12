@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import TopTracks from "./TopTracks";
 import TopArtists from "./TopArtists";
 import { getUserData } from "../api";
-import TopPlaylists from "./UserPlaylists";
+import UserPlaylists from "./UserPlaylists";
 import Loader from "./Loader";
 
 export default function User() {
@@ -63,7 +63,7 @@ export default function User() {
                     <TopTracks tracks={topTracks} />
                 </div>
                 <div>
-                    <TopPlaylists />
+                    <UserPlaylists />
                 </div>
             </section>
         </div>

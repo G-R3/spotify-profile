@@ -19,19 +19,19 @@ export default function Sidebar() {
                     Expand
                 </button>
             </div>
-            <ul className="sidebar absolute left-0 bg-black w-52 h-screen -translate-x-full transition-transform py-4 px-3 md:-translate-x-0 md:w-full md:relative md:px-0">
+            <ul className="sidebar text-sm absolute left-0 bg-black w-52 h-screen -translate-x-full transition-transform py-4 px-3 md:-translate-x-0 md:w-full md:relative md:px-0">
                 <li className="hover:bg-neutral-800">
-                    <Link to="/" className="py-1 px-4 block text-lg">
+                    <Link to="/" className="py-1 px-4 block">
                         Profile
                     </Link>
                 </li>
                 <li className="hover:bg-neutral-800">
-                    <Link to="/playlists" className="py-1 px-4 block text-lg">
+                    <Link to="/playlists" className="py-1 px-4 block">
                         Playlists
                     </Link>
                 </li>
                 <li className="hover:bg-neutral-800">
-                    <Link to="/browse" className="py-1 px-4 block text-lg">
+                    <Link to="/browse" className="py-1 px-4 block">
                         Browse
                     </Link>
                 </li>
