@@ -36,17 +36,17 @@ export default function TopPlaylists() {
                     {playlists.total}
                 </span>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
                 {playlists.items.map((playlist, i) => (
                     <Link
                         key={playlist.id}
                         to={`/playlists/${playlist.id}`}
-                        className="flex w-24 h-24 lg:w-36 lg:h-36 xl:w-48 xl:h-48"
+                        className="w-28 h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-48 xl:h-48"
                     >
                         <img
                             src={playlist.images[0]?.url}
                             alt=""
-                            className="w-24 h-24 lg:w-36 lg:h-36 xl:w-48 xl:h-48"
+                            className="w-28 h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-48 xl:h-48"
                         />
                     </Link>
                 ))}
