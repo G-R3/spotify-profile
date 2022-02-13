@@ -22,7 +22,8 @@ function App() {
                 <Route path="/" element={accessToken ? <Layout /> : <Login />}>
                     <Route index element={<Home />} />
                     <Route path="/profile" element={<Profile />} />
-                    <Route path="/library" element={<Library />}>
+                    <Route path="/library" element={<Library />} />
+                    <Route path="/playlist">
                         <Route
                             path=":playlistId"
                             element={<PlaylistDetails />}
