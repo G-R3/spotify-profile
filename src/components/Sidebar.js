@@ -31,8 +31,8 @@ export default function Sidebar() {
                     </Link>
                 </li>
                 <li className="hover:bg-neutral-800">
-                    <Link to="/playlists" className="py-1 px-4 block">
-                        Playlists
+                    <Link to="/library" className="py-1 px-4 block">
+                        Library
                     </Link>
                 </li>
                 <li className="hover:bg-neutral-800">

@@ -3,7 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 import { getUserPlaylists } from "../api";
 import Loader from "./Loader";
 
-export default function Playlists() {
+export default function Library() {
     let [playlists, setPlaylists] = useState("");
     useEffect(() => {
         const fetchAllPlaylists = async () => {

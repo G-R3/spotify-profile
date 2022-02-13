@@ -4,7 +4,7 @@ import Login from "./Login";
 import Profile from "./Profile";
 import Layout from "./Layout";
 import token from "../api/index";
-import Playlists from "./Playlists";
+import Library from "./Library";
 import PlaylistDetails from "./PlaylistDetails";
 import Browse from "./Browse";
 import Home from "./Home";
@@ -22,7 +22,7 @@ function App() {
                 <Route path="/" element={accessToken ? <Layout /> : <Login />}>
                     <Route index element={<Home />} />
                     <Route path="/profile" element={<Profile />} />
-                    <Route path="/playlists" element={<Playlists />}>
+                    <Route path="/library" element={<Library />}>
                         <Route
                             path=":playlistId"
                             element={<PlaylistDetails />}
