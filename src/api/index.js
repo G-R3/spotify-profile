@@ -115,16 +115,22 @@ const getTopArtists = async () => {
         },
     );
 };
-const getUserPlaylists = async () => {
-    let response = await axios.get("https://api.spotify.com/v1/me/playlists", {
+const getUserPlaylists = async (next, data = []) => {
+    const url = next || "https://api.spotify.com/v1/me/playlists";
+    let response = await axios.get(url, {
         headers: {
             Authorization: `Bearer ${token}`,
         },
     });
+    // let result = [...data, ...response.data.items];
+    let result = data.concat(response.data.items);
 
-    console.log(response);
+    if (response.data.next) {
+        return getUserPlaylists(response.data.next, result);
+    }
 
-    return response.data;
+    console.log(result);
+    return result;
 };
 
 const getPlaylist = async (playlistId) => {
@@ -175,7 +181,6 @@ const getUserData = () => {
                     topTracks: tracks.data,
                 };
 
-                console.log(data);
                 return data;
             }),
         );

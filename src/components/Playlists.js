@@ -7,14 +7,13 @@ export default function Playlists() {
     let [playlists, setPlaylists] = useState("");
     useEffect(() => {
         const fetchAllPlaylists = async () => {
-            const { items } = await getUserPlaylists();
+            const playlists = await getUserPlaylists();
 
-            setPlaylists(items);
+            setPlaylists(playlists);
         };
 
         fetchAllPlaylists();
     }, []);
-
     return playlists ? (
         <div className="max-w-7xl mx-auto">
             <h1 className="text-lg font-bold mb-5">Your Playlists</h1>
