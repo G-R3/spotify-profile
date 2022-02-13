@@ -24,11 +24,11 @@ export default function PlaylistDetails() {
 
     return playlist && !isLoading ? (
         <div>
-            <div className="mt-20 mb-10 flex flex-col gap-8 md:items-end md:flex-row md:max-h-[200px]">
+            <div className="mb-10 flex flex-col gap-8 md:items-end md:flex-row md:max-h-[200px]">
                 <img
                     src={playlist.images[0]?.url}
                     alt=""
-                    className="w-48 h-48"
+                    className="w-48 h-48 shadow-lg"
                 />
                 <div className="flex flex-col gap-5">
                     <span className="uppercase font-semibold text-xs">

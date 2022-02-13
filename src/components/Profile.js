@@ -29,13 +29,13 @@ export default function User() {
 
     return (
         <div className="flex flex-col gap-16">
-            <section className="flex items-end gap-5">
+            <section className="flex items-end gap-8">
                 <img
                     src={user.images[0].url}
                     alt=""
-                    className="w-52 h-52 rounded-full"
+                    className="w-52 h-52 rounded-full shadow-lg"
                 />
-                <div className="">
+                <div>
                     <span className="font-semibold text-xs">PROFILE</span>
                     <h1 className="my-3 text-3xl lg:text-8xl font-bold">
                         {user.display_name}
