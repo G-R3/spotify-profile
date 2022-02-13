@@ -4,7 +4,7 @@ import { getUserPlaylists } from "../api/index";
 import { getItems } from "../api/index";
 import Loader from "./Loader";
 
-export default function TopPlaylists() {
+export default function UserPlaylists() {
     const [playlists, setPlaylists] = useState("");
     const [loading, setLoading] = useState(false);
 

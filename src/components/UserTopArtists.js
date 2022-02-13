@@ -2,7 +2,7 @@ import React from "react";
 import useGetItems from "../hooks/useGetItems";
 import ArtistCard from "./ArtistCard";
 
-export default function TopArtists({ artists }) {
+export default function UserTopArtists({ artists }) {
     let { data, getNext, getPrevious } = useGetItems(artists);
 
     return data ? (
