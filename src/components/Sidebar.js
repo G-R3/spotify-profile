@@ -22,6 +22,11 @@ export default function Sidebar() {
             <ul className="sidebar text-sm absolute left-0 bg-black w-52 h-screen -translate-x-full transition-transform py-4 px-3 lg:-translate-x-0 lg:w-full lg:relative lg:px-0">
                 <li className="hover:bg-neutral-800">
                     <Link to="/" className="py-1 px-4 block">
+                        Home
+                    </Link>
+                </li>
+                <li className="hover:bg-neutral-800">
+                    <Link to="/profile" className="py-1 px-4 block">
                         Profile
                     </Link>
                 </li>

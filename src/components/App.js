@@ -7,6 +7,7 @@ import token from "../api/index";
 import Playlists from "./Playlists";
 import PlaylistDetails from "./PlaylistDetails";
 import Browse from "./Browse";
+import Home from "./Home";
 
 function App() {
     const [accessToken, setAccessToken] = useState("");
@@ -19,7 +20,8 @@ function App() {
         <div className="h-full">
             <Routes>
                 <Route path="/" element={accessToken ? <Layout /> : <Login />}>
-                    <Route index element={<Profile />} />
+                    <Route index element={<Home />} />
+                    <Route path="/profile" element={<Profile />} />
                     <Route path="/playlists" element={<Playlists />}>
                         <Route
                             path=":playlistId"
