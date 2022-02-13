@@ -96,15 +96,18 @@ const getFollowing = async () => {
 };
 
 const getTopTracks = async () => {
-    return axios.get("https://api.spotify.com/v1/me/top/tracks?limit=5", {
-        headers: {
-            Authorization: `Bearer ${token}`,
+    return axios.get(
+        "https://api.spotify.com/v1/me/top/tracks?limit=5&time_range=short_term",
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
         },
-    });
+    );
 };
 const getTopArtists = async () => {
     return await axios.get(
-        "https://api.spotify.com/v1/me/top/artists?limit=5",
+        "https://api.spotify.com/v1/me/top/artists?limit=5&time_range=short_term",
         {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -172,6 +175,7 @@ const getUserData = () => {
                     topTracks: tracks.data,
                 };
 
+                console.log(data);
                 return data;
             }),
         );

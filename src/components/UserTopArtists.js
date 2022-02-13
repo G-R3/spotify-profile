@@ -1,6 +1,6 @@
 import React from "react";
 import useGetItems from "../hooks/useGetItems";
-import Artist from "./Artist";
+import ArtistCard from "./ArtistCard";
 
 export default function TopArtists({ artists }) {
     let { data, getNext, getPrevious } = useGetItems(artists);
@@ -8,7 +8,7 @@ export default function TopArtists({ artists }) {
     return data ? (
         <div>
             <div className="flex justify-between items-center mb-4">
-                <h2 className="text-lg font-bold">Top Artists</h2>
+                <h2 className="text-lg font-bold">Top artist this month</h2>
                 <div className="">
                     <button
                         onClick={() => getPrevious(data.previous)}
@@ -26,9 +26,9 @@ export default function TopArtists({ artists }) {
                     </button>
                 </div>
             </div>
-            <div className="flex flex-col gap-2">
+            <div className="grid grid-cols-5 gap-10">
                 {data.items.map((artist, i) => (
-                    <Artist artist={artist} key={artist.id} />
+                    <ArtistCard artist={artist} key={artist.id} />
                 ))}
             </div>
         </div>

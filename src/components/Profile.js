@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import TopTracks from "./TopTracks";
-import TopArtists from "./TopArtists";
+import UserTopArtists from "./UserTopArtists";
 import { getUserData } from "../api";
 import UserPlaylists from "./UserPlaylists";
 import Loader from "./Loader";
+import { Link } from "react-router-dom";
 
 export default function User() {
     const [user, setUser] = useState("");
@@ -29,35 +30,36 @@ export default function User() {
 
     return (
         <div className="flex flex-col gap-16">
-            <section className="flex flex-col items-center gap-2">
+            <section className="flex items-end gap-5">
                 <img
                     src={user.images[0].url}
                     alt=""
                     className="w-52 h-52 rounded-full"
                 />
-                <h1 className="my-3 text-xl font-semibold">
-                    Welcome @{user.display_name}
-                </h1>
-                <div className="flex justify-center items-center gap-8 h-10">
-                    <div className="bg-neutral-800 rounded-md py-2 px-5 text-sm text-center">
-                        <p className="text-neutral-400 font-semibold">
-                            Followers
-                        </p>
-                        <span className="text-spotify-green block font-bold">
-                            {user.followers.total}
-                        </span>
-                    </div>
-                    <div className="bg-neutral-800 rounded-md py-2 px-5 text-sm text-center">
-                        <p className="text-neutral-400 font-semibold">
-                            Following
-                        </p>
-                        <span className="text-spotify-green block font-bold">
+                <div className="">
+                    <span className="font-semibold text-xs">PROFILE</span>
+                    <h1 className="my-3 text-3xl lg:text-8xl font-bold">
+                        {user.display_name}
+                    </h1>
+
+                    <Link to="/" className="text-sm">
+                        <p className="text-spotify-green font-bold">
                             {following}
-                        </span>
-                    </div>
+                            <span className="text-neutral-400 font-semibold">
+                                {" "}
+                                Following
+                            </span>
+                        </p>
+                    </Link>
                 </div>
             </section>
-            <section className="flex flex-col gap-14 px-10 lg:mx-auto max-w-7xl">
+            <section>
+                <UserTopArtists artists={topArtists} />
+            </section>
+            <section>
+                <TopTracks tracks={topTracks} />
+            </section>
+            {/* <section className="flex flex-col gap-14 px-10 lg:mx-auto max-w-7xl">
                 <div className="flex flex-col gap-14 xl:flex-row xl:justify-between">
                     <TopArtists artists={topArtists} />
                     <TopTracks tracks={topTracks} />
@@ -65,7 +67,7 @@ export default function User() {
                 <div>
                     <UserPlaylists />
                 </div>
-            </section>
+            </section> */}
         </div>
     );
 }
