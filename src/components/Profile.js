@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import UserTopTracks from "./UserTopTracks";
 import UserTopArtists from "./UserTopArtists";
 import { getUserData } from "../api";
-import UserPlaylists from "./UserPlaylists";
 import Loader from "./Loader";
 import { Link } from "react-router-dom";
 
@@ -59,15 +58,6 @@ export default function User() {
             <section>
                 <UserTopTracks tracks={topTracks} />
             </section>
-            {/* <section className="flex flex-col gap-14 px-10 lg:mx-auto max-w-7xl">
-                <div className="flex flex-col gap-14 xl:flex-row xl:justify-between">
-                    <TopArtists artists={topArtists} />
-                    <TopTracks tracks={topTracks} />
-                </div>
-                <div>
-                    <UserPlaylists />
-                </div>
-            </section> */}
         </div>
     );
 }
