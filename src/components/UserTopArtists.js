@@ -26,7 +26,7 @@ export default function UserTopArtists({ artists }) {
                     </button>
                 </div>
             </div>
-            <div className="grid grid-cols-5 gap-10">
+            <div className="grid grid-cols-auto-fit gap-10">
                 {data.items.map((artist, i) => (
                     <ArtistCard artist={artist} key={artist.id} />
                 ))}
