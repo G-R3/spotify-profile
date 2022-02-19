@@ -115,8 +115,10 @@ const getTopArtists = async () => {
         },
     );
 };
-const getUserPlaylists = async (next, data = []) => {
-    const url = next || "https://api.spotify.com/v1/me/playlists";
+const getUserPlaylists = async (
+    url = "https://api.spotify.com/v1/me/playlists",
+    data = [],
+) => {
     let response = await axios.get(url, {
         headers: {
             Authorization: `Bearer ${token}`,
@@ -129,7 +131,6 @@ const getUserPlaylists = async (next, data = []) => {
         return getUserPlaylists(response.data.next, result);
     }
 
-    console.log(result);
     return result;
 };
 
