@@ -11,7 +11,7 @@ export default function Artist({ artist }) {
                 <img
                     src={artist.images[0].url}
                     alt=""
-                    className="w-40 h-40 max-w-48 max-h-48 rounded-full group-hover:shadow-lg"
+                    className="w-48 h-48 rounded-full group-hover:shadow-lg"
                 />
                 <div>
                     <h3 className="font-bold">{artist.name}</h3>

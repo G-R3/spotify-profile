@@ -3,7 +3,7 @@ import { milliToMinutesAndSeconds } from "../utils/utils";
 
 export default function TrackItem({ track, index }) {
     return (
-        <div className="md:h-16 p-3 flex items-center justify-between gap-4 text-sm hover:bg-neutral-800 rounded-md group w-full">
+        <div className="p-3 flex items-center justify-between gap-4 text-sm hover:bg-neutral-800 rounded-md group w-full">
             <div className="flex gap-5 items-center">
                 {index ? (
                     <span className="text-neutral-400 font-semibold text-xs">
@@ -15,7 +15,7 @@ export default function TrackItem({ track, index }) {
                 <img
                     src={track.album?.images[0]?.url}
                     alt=""
-                    className="w-10 h-10"
+                    className="w-16 h-16"
                 />
                 <div>
                     <h3 className="min-w-[25ch] w-[35ch] truncate text-xs">
