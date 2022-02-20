@@ -12,14 +12,14 @@ export default function Sidebar() {
         // background color: bg-black
         // li text-color: text-neutral-400    hover: text-white
         // li background-color on hover: bg-neutral-800
-        <nav className="bg-black w-full py-4 px-3 lg:w-52 fixed transition">
-            <div className="flex">
-                <span className="px-4 font-bold text-xl">SpotifyStats</span>
+        <nav className="bg-black w-full py-4 lg:w-52 fixed transition shadow-lg">
+            <div className="flex justify-center">
+                <span className="font-bold text-3xl">SpotifyStats</span>
                 <button onClick={expand} className="ml-auto lg:hidden">
                     Expand
                 </button>
             </div>
-            <ul className="sidebar text-sm absolute left-0 bg-black w-52 h-screen -translate-x-full transition-transform py-4 px-3 lg:-translate-x-0 lg:w-full lg:relative lg:px-0">
+            <ul className="sidebar text-lg absolute left-0 bg-black w-52 h-screen -translate-x-full transition-transform py-4 px-3 lg:-translate-x-0 lg:w-full lg:relative lg:px-0">
                 <li className="hover:bg-neutral-800">
                     <Link to="/" className="py-1 px-4 block">
                         Home

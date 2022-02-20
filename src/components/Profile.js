@@ -41,14 +41,15 @@ export default function User() {
                         {user.display_name}
                     </h1>
 
-                    <Link to="/" className="text-sm">
-                        <p className="text-spotify-green font-bold">
-                            {following}
-                            <span className="text-neutral-400 font-semibold">
-                                {" "}
-                                Following
-                            </span>
-                        </p>
+                    <Link
+                        to="/"
+                        className="text-sm text-spotify-green font-bold"
+                    >
+                        {following}
+                        <span className="text-neutral-400 font-semibold">
+                            {" "}
+                            Following
+                        </span>
                     </Link>
                 </div>
             </section>
