@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Artist({ artist }) {
     return (
         <Link
-            to={`artist/${artist.id}`}
+            to={`/artist/${artist.id}`}
             className="flex flex-col items-center py-5 rounded-md text-sm bg-neutral-900 shadow-lg hover:bg-neutral-800 transition-all group"
         >
             <div className="flex flex-col gap-5">
