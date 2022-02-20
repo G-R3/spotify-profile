@@ -33,6 +33,9 @@ function App() {
                     <Route path="/artist">
                         <Route path=":artistId" element={<ArtistProfile />} />
                     </Route>
+                    <Route path="/album">
+                        <Route path=":albumId" element={<PlaylistDetails />} />
+                    </Route>
                     <Route path="/browse" element={<Browse />} />
                 </Route>
             </Routes>
