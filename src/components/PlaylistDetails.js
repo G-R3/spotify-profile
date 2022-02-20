@@ -1,28 +1,62 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState } from "react/cjs/react.development";
-import { getPlaylist } from "../api";
+import { getArtistAlbumTracks, getPlaylist } from "../api";
 import Loader from "./Loader";
 import TrackItem from "./TrackItem";
 
 export default function PlaylistDetails() {
-    let { playlistId } = useParams();
+    const param = useParams();
     const [playlist, setPlaylist] = useState("");
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchPlaylist = async () => {
-            const playlistData = await getPlaylist(playlistId);
+            if (param.playlistId) {
+                const playlistData = await getPlaylist(param.playlistId);
+                setPlaylist(playlistData);
+            } else if (param.albumId) {
+                const playlistData = await getArtistAlbumTracks(param.albumId);
+                setPlaylist(playlistData);
+            }
 
-            setPlaylist(playlistData);
             setIsLoading(false);
         };
 
         fetchPlaylist();
-    }, [playlistId]);
+    }, [param]);
+
+    let subheading;
+    if (playlist.owner) {
+        subheading = (
+            <div>
+                <Link
+                    to={"/profile"}
+                    className="text-sm hover:underline hover:underline-offset-1"
+                >
+                    {playlist.owner.display_name} -{" "}
+                </Link>
+                <span>{playlist.tracks.total} Songs</span>
+            </div>
+        );
+    } else if (playlist.artists) {
+        const releaseYear = new Date(playlist.release_date).getFullYear();
+        subheading = (
+            <div>
+                <Link
+                    to={`/artist/${playlist.artists[0]?.id}`}
+                    className="text-sm hover:underline hover:underline-offset-1"
+                >
+                    {playlist.artists[0]?.name} -{" "}
+                </Link>
+                <span>{releaseYear} - </span>
+                <span>{playlist.tracks.total} Songs</span>
+            </div>
+        );
+    }
 
     return playlist && !isLoading ? (
-        <div>
+        <div className="max-w-[1500px] mx-auto">
             <div className="mb-10 flex flex-col gap-8 md:items-end md:flex-row md:max-h-[200px]">
                 <img
                     src={playlist.images[0]?.url}
@@ -43,13 +77,8 @@ export default function PlaylistDetails() {
                         </p>
                     )}
                     <div className="flex items-center gap-5">
-                        <p className="text-sm">
-                            {playlist.owner.display_name} -
-                            <span className="text-neutral-400">
-                                {" "}
-                                {playlist.tracks.total} Songs
-                            </span>
-                        </p>
+                        {subheading}
+
                         {playlist.external_urls && (
                             <a
                                 href={playlist.external_urls.spotify}
@@ -66,7 +95,8 @@ export default function PlaylistDetails() {
 
             <div className="flex flex-col w-full">
                 {playlist.tracks.items.map((item, i) => {
-                    const { track } = item;
+                    const track = item.track ? item.track : item;
+
                     return (
                         <TrackItem
                             key={track.id ? track.id : i}
