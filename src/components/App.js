@@ -8,6 +8,7 @@ import Library from "./Library";
 import PlaylistDetails from "./PlaylistDetails";
 import Browse from "./Browse";
 import Home from "./Home";
+import ArtistProfile from "./ArtistProfile";
 
 function App() {
     const [accessToken, setAccessToken] = useState("");
@@ -28,6 +29,9 @@ function App() {
                             path=":playlistId"
                             element={<PlaylistDetails />}
                         />
+                    </Route>
+                    <Route path="/artist">
+                        <Route path=":artistId" element={<ArtistProfile />} />
                     </Route>
                     <Route path="/browse" element={<Browse />} />
                 </Route>
