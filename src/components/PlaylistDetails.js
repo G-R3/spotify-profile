@@ -38,7 +38,12 @@ export default function PlaylistDetails() {
                     <h1 className="text-3xl lg:text-5xl font-bold">
                         {playlist.name}
                     </h1>
-                    <div>
+                    {playlist.description && (
+                        <p className="text-neutral-400">
+                            {playlist.description}
+                        </p>
+                    )}
+                    <div className="flex items-center gap-5">
                         <p className="text-sm">
                             {playlist.owner.display_name} -
                             <span className="text-neutral-400">
@@ -46,6 +51,16 @@ export default function PlaylistDetails() {
                                 {playlist.tracks.total} Songs
                             </span>
                         </p>
+                        {playlist.external_urls && (
+                            <a
+                                href={playlist.external_urls.spotify}
+                                target={"_blank"}
+                                className="bg-spotify-green p-2 rounded-full text-sm active:ring-2 active:ring-offset-2 active:ring-offset-black hover:ring-2 hover:ring-offset-2 hover:ring-offset-black transition-all"
+                                rel="noreferrer"
+                            >
+                                View on Spotify
+                            </a>
+                        )}
                     </div>
                 </div>
             </div>
