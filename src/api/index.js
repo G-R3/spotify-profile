@@ -143,7 +143,6 @@ const getPlaylist = async (playlistId) => {
             },
         },
     );
-
     return response.data;
 };
 const getArtist = async (artistId) => {
@@ -155,8 +154,6 @@ const getArtist = async (artistId) => {
             },
         },
     );
-
-    console.log(response.data);
     return response.data;
 };
 const getArtistTopTrack = async (artistId) => {
@@ -168,7 +165,28 @@ const getArtistTopTrack = async (artistId) => {
             },
         },
     );
-    console.log(response.data);
+    return response.data;
+};
+const getArtistAlbums = async (artistId) => {
+    const response = await axios.get(
+        `https://api.spotify.com/v1/artists/${artistId}/albums`,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        },
+    );
+    return response.data;
+};
+const getArtistAlbumTracks = async (albumId) => {
+    const response = await axios.get(
+        `https://api.spotify.com/v1/albums/${albumId}`,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        },
+    );
     return response.data;
 };
 const getItems = async (url) => {
@@ -219,4 +237,6 @@ export {
     getFeaturedPlaylists,
     getArtist,
     getArtistTopTrack,
+    getArtistAlbums,
+    getArtistAlbumTracks,
 };
