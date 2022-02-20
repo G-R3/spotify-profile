@@ -169,7 +169,7 @@ const getArtistTopTrack = async (artistId) => {
 };
 const getArtistAlbums = async (artistId) => {
     const response = await axios.get(
-        `https://api.spotify.com/v1/artists/${artistId}/albums`,
+        `https://api.spotify.com/v1/artists/${artistId}/albums?market=ES&include_groups=album`,
         {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -187,6 +187,7 @@ const getArtistAlbumTracks = async (albumId) => {
             },
         },
     );
+    console.log(response.data);
     return response.data;
 };
 const getItems = async (url) => {

@@ -34,9 +34,9 @@ export default function PlaylistDetails() {
                     to={"/profile"}
                     className="text-sm hover:underline hover:underline-offset-1"
                 >
-                    {playlist.owner.display_name} -{" "}
+                    {playlist.owner.display_name}
                 </Link>
-                <span>{playlist.tracks.total} Songs</span>
+                <span> - {playlist.tracks.total} Songs</span>
             </div>
         );
     } else if (playlist.artists) {
@@ -47,9 +47,9 @@ export default function PlaylistDetails() {
                     to={`/artist/${playlist.artists[0]?.id}`}
                     className="text-sm hover:underline hover:underline-offset-1"
                 >
-                    {playlist.artists[0]?.name} -{" "}
+                    {playlist.artists[0]?.name}
                 </Link>
-                <span>{releaseYear} - </span>
+                <span> - {releaseYear} - </span>
                 <span>{playlist.tracks.total} Songs</span>
             </div>
         );

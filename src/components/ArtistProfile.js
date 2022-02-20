@@ -73,6 +73,11 @@ export default function ArtistProfile() {
                                 />
                                 <div>
                                     <h2 className="font-bold">{album.name}</h2>
+                                    <p className="text-xs text-neutral-400 mt-2">
+                                        {new Date(
+                                            album.release_date,
+                                        ).getFullYear()}
+                                    </p>
                                 </div>
                             </div>
                         </Link>
