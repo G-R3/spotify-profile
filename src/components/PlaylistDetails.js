@@ -8,11 +8,10 @@ import TrackItem from "./TrackItem";
 export default function PlaylistDetails() {
     let { playlistId } = useParams();
     const [playlist, setPlaylist] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchPlaylist = async () => {
-            setIsLoading(true);
             const playlistData = await getPlaylist(playlistId);
 
             setPlaylist(playlistData);
