@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getArtist, getArtistTopTrack } from "../api";
+import { Link, useParams } from "react-router-dom";
+import { getArtist, getArtistAlbums, getArtistTopTrack } from "../api";
 import Loader from "./Loader";
 import numbersWithCommas from "../utils/numsWithCommas";
 import TrackItem from "./TrackItem";
@@ -9,23 +9,26 @@ export default function ArtistProfile() {
     const { artistId } = useParams();
     const [artist, setArtist] = useState("");
     const [topTracks, setTopTracks] = useState("");
+    const [albums, setAlbums] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchArtist = async () => {
             const artist = await getArtist(artistId);
             const { tracks } = await getArtistTopTrack(artistId);
+            const albums = await getArtistAlbums(artistId);
             setArtist(artist);
             setTopTracks(tracks);
+            setAlbums(albums);
             setIsLoading(false);
         };
 
         fetchArtist();
     }, [artistId]);
 
-    return artist && topTracks && !isLoading ? (
-        <div>
-            <div className="mb-10 flex flex-col gap-8 md:items-end md:flex-row md:max-h-[200px]">
+    return artist && topTracks && albums && !isLoading ? (
+        <div className="flex flex-col gap-10">
+            <div className="flex flex-col gap-8 md:items-end md:flex-row">
                 <img
                     src={artist.images[0]?.url}
                     alt=""
@@ -47,9 +50,34 @@ export default function ArtistProfile() {
             </div>
 
             <section>
+                <h2 className="text-2xl font-bold mb-5">Popular</h2>
                 {topTracks.map((track, i) => (
                     <TrackItem key={track.id} track={track} index={i} />
                 ))}
+            </section>
+
+            <section>
+                <h2 className="text-2xl font-bold mb-5">Albums</h2>
+                <div className="grid grid-cols-auto-fit gap-10 pb-10">
+                    {albums.items.map((album, i) => (
+                        <Link
+                            key={album.id}
+                            to={`/album/${album.id}`}
+                            className="flex flex-col items-center py-5 rounded-md text-sm bg-neutral-900 shadow-lg hover:bg-neutral-800 transition-all group"
+                        >
+                            <div className="flex flex-col gap-5">
+                                <img
+                                    src={album.images[0]?.url}
+                                    alt=""
+                                    className="w-48 h-48 group-hover:shadow-lg"
+                                />
+                                <div>
+                                    <h2 className="font-bold">{album.name}</h2>
+                                </div>
+                            </div>
+                        </Link>
+                    ))}
+                </div>
             </section>
         </div>
     ) : (
