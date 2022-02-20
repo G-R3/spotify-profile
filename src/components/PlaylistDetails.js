@@ -71,7 +71,7 @@ export default function PlaylistDetails() {
                         <TrackItem
                             key={track.id ? track.id : i}
                             track={track}
-                            index={i + 1}
+                            index={i}
                         />
                     );
                 })}

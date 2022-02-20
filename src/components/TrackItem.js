@@ -3,11 +3,11 @@ import { milliToMinutesAndSeconds } from "../utils/utils";
 
 export default function TrackItem({ track, index }) {
     return (
-        <div className="p-3 flex items-center justify-between gap-4 text-sm hover:bg-neutral-800 rounded-md group w-full">
+        <div className="py-3 px-5 flex items-center justify-between gap-4 text-sm hover:bg-neutral-800 rounded-md group w-full">
             <div className="flex gap-5 items-center">
-                {index ? (
+                {index || index === 0 ? (
                     <span className="text-neutral-400 font-semibold text-xs">
-                        {index}
+                        {index + 1}
                     </span>
                 ) : (
                     ""
