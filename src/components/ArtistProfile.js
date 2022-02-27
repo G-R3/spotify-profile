@@ -11,6 +11,7 @@ export default function ArtistProfile() {
     const [topTracks, setTopTracks] = useState("");
     const [albums, setAlbums] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [hideContent, setHideContent] = useState(true);
 
     useEffect(() => {
         const fetchArtist = async () => {
@@ -51,9 +52,31 @@ export default function ArtistProfile() {
 
             <section>
                 <h2 className="text-2xl font-bold mb-5">Popular</h2>
-                {topTracks.map((track, i) => (
-                    <TrackItem key={track.id} track={track} index={i} />
-                ))}
+                <div>
+                    {hideContent
+                        ? topTracks
+                              .slice(0, 5)
+                              .map((track, i) => (
+                                  <TrackItem
+                                      key={track.id}
+                                      track={track}
+                                      index={i}
+                                  />
+                              ))
+                        : topTracks.map((track, i) => (
+                              <TrackItem
+                                  key={track.id}
+                                  track={track}
+                                  index={i}
+                              />
+                          ))}
+                </div>
+                <button
+                    className="text-neutral-400 text-sm font-semibold"
+                    onClick={() => setHideContent(!hideContent)}
+                >
+                    {hideContent ? "SEE MORE" : "SEE LESS"}
+                </button>
             </section>
 
             <section>
@@ -63,20 +86,23 @@ export default function ArtistProfile() {
                         <Link
                             key={album.id}
                             to={`/album/${album.id}`}
-                            className="flex flex-col items-center py-5 rounded-md text-sm bg-neutral-900 shadow-lg hover:bg-neutral-800 transition-all group"
+                            className="flex flex-col items-center py-5 px-2 rounded-md text-sm bg-neutral-900 shadow-lg hover:bg-neutral-800 transition-all group"
                         >
                             <div className="flex flex-col gap-5">
                                 <img
                                     src={album.images[0]?.url}
                                     alt=""
-                                    className="w-48 h-48 group-hover:shadow-lg"
+                                    className="w-48 h-48 rounded-md group-hover:shadow-lg"
                                 />
                                 <div>
-                                    <h2 className="font-bold">{album.name}</h2>
-                                    <p className="text-xs text-neutral-400 mt-2">
+                                    <h2 className="font-bold truncate w-[25ch]">
+                                        {album.name}
+                                    </h2>
+                                    <p className="text-neutral-400 font-semibold mt-1">
                                         {new Date(
                                             album.release_date,
-                                        ).getFullYear()}
+                                        ).getFullYear()}{" "}
+                                        - <span>{album.type}</span>
                                     </p>
                                 </div>
                             </div>

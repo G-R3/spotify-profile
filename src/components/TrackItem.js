@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { milliToMinutesAndSeconds } from "../utils/utils";
 
 export default function TrackItem({ track, index }) {
@@ -26,6 +27,7 @@ export default function TrackItem({ track, index }) {
                                 href={track.external_urls.spotify}
                                 target={"_blank"}
                                 rel="noreferrer"
+                                className="font-semibold"
                             >
                                 {track.name}
                             </a>
@@ -36,13 +38,9 @@ export default function TrackItem({ track, index }) {
 
                     <span className="text-xs text-neutral-400 hover:underline hover:underline-offset-1 group-hover:text-white">
                         {track.artists[0].external_urls.spotify ? (
-                            <a
-                                href={track.artists[0].external_urls.spotify}
-                                target={"_blank"}
-                                rel="noreferrer"
-                            >
+                            <Link to={`/artist/${track.artists[0]?.id}`}>
                                 {track.artists[0].name}
-                            </a>
+                            </Link>
                         ) : (
                             track.artists[0].name
                         )}

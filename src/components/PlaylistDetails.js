@@ -32,7 +32,7 @@ export default function PlaylistDetails() {
             <div>
                 <Link
                     to={"/profile"}
-                    className="text-sm hover:underline hover:underline-offset-1"
+                    className="text-sm font-semibold hover:underline hover:underline-offset-1"
                 >
                     {playlist.owner.display_name}
                 </Link>
@@ -45,7 +45,7 @@ export default function PlaylistDetails() {
             <div>
                 <Link
                     to={`/artist/${playlist.artists[0]?.id}`}
-                    className="text-sm hover:underline hover:underline-offset-1"
+                    className="text-sm font-semibold hover:underline hover:underline-offset-1"
                 >
                     {playlist.artists[0]?.name}
                 </Link>
