@@ -29,7 +29,7 @@ export default function User() {
 
     return (
         <div className="flex flex-col gap-16 max-w-7xl mx-auto">
-            <section className="flex items-end gap-8">
+            <section className="flex flex-col items-center sm:flex-row sm:items-end gap-8">
                 <img
                     src={user.images[0].url}
                     alt=""
@@ -37,7 +37,7 @@ export default function User() {
                 />
                 <div>
                     <span className="font-semibold text-xs">PROFILE</span>
-                    <h1 className="my-3 text-3xl lg:text-8xl font-bold">
+                    <h1 className="my-3 text-6xl lg:text-8xl font-bold">
                         {user.display_name}
                     </h1>
 

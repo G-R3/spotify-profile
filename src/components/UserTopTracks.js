@@ -8,7 +8,7 @@ export default function UserTopTracks({ tracks }) {
     return data ? (
         <div>
             <div className="flex justify-between mb-4">
-                <h2 className="text-lg font-bold">Top trakcs this month</h2>
+                <h2 className="text-lg font-bold">Top tracks this month</h2>
                 <div className="flex">
                     <button
                         onClick={() => getPrevious(data.previous)}

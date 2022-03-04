@@ -21,7 +21,7 @@ export default function TrackItem({ track, index }) {
                     />
                 )}
                 <div>
-                    <h3 className="min-w-[25ch] w-[35ch] truncate text-xs">
+                    <h3 className="w-[20ch] sm:w-[35ch] text-xs truncate">
                         {track.external_urls.spotify ? (
                             <a
                                 href={track.external_urls.spotify}
@@ -50,7 +50,7 @@ export default function TrackItem({ track, index }) {
 
             {track.album && (
                 <span
-                    className="min-w-[25ch] w-[30ch] truncate text-xs text-neutral-400 hover:underline 
+                    className="w-[30ch] truncate text-xs text-neutral-400 hover:underline 
   hover:text-white hover:underline-offset-1 hidden sm:inline"
                 >
                     <a

@@ -36,7 +36,7 @@ export default function PlaylistDetails() {
                 >
                     {playlist.owner.display_name}
                 </Link>
-                <span> - {playlist.tracks.total} Songs</span>
+                <span> - {playlist.tracks.total} songs</span>
             </div>
         );
     } else if (playlist.artists) {
@@ -76,14 +76,14 @@ export default function PlaylistDetails() {
                             {playlist.description}
                         </p>
                     )}
-                    <div className="flex items-center gap-5">
+                    <div className="flex flex-col items-center sm:flex-row gap-5">
                         {subheading}
 
                         {playlist.external_urls && (
                             <a
                                 href={playlist.external_urls.spotify}
                                 target={"_blank"}
-                                className="bg-spotify-green p-2 rounded-full text-sm active:ring-2 active:ring-offset-2 active:ring-offset-black hover:ring-2 hover:ring-offset-2 hover:ring-offset-black transition-all"
+                                className="text-center bg-spotify-green p-2 rounded-full text-sm active:ring-2 active:ring-offset-2 active:ring-offset-black hover:ring-2 hover:ring-offset-2 hover:ring-offset-black transition-all"
                                 rel="noreferrer"
                             >
                                 View on Spotify
