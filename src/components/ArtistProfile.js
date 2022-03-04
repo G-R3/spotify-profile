@@ -47,7 +47,7 @@ export default function ArtistProfile() {
                 style={{
                     backgroundColor: imageColor,
                 }}
-                className="rounded-md p-10 flex flex-col gap-8 md:items-end md:flex-row bg-gradient-to-t from-neutral-800"
+                className="rounded-md py-20 px-10 flex flex-col gap-8 md:items-end md:flex-row bg-gradient-to-t from-neutral-800"
             >
                 <img
                     src={artist.images[0]?.url}
@@ -69,7 +69,7 @@ export default function ArtistProfile() {
                 </div>
             </div>
 
-            <section>
+            <section className="px-5">
                 <h2 className="text-2xl font-bold mb-5">Popular</h2>
                 <div>
                     {hideContent
@@ -98,7 +98,7 @@ export default function ArtistProfile() {
                 </button>
             </section>
 
-            <section>
+            <section className="px-5">
                 <h2 className="text-2xl font-bold mb-5">Albums</h2>
                 <div className="grid grid-cols-auto-fit gap-10 pb-10">
                     {albums.items.map((album, i) => (
