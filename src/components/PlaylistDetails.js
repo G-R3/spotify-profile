@@ -4,11 +4,13 @@ import { useState } from "react/cjs/react.development";
 import { getArtistAlbumTracks, getPlaylist } from "../api";
 import Loader from "./Loader";
 import TrackItem from "./TrackItem";
+import getImageColor from "../utils/imageColor";
 
 export default function PlaylistDetails() {
     const param = useParams();
     const [playlist, setPlaylist] = useState("");
     const [isLoading, setIsLoading] = useState(true);
+    const [imageColor, setImageColor] = useState("");
 
     useEffect(() => {
         const fetchPlaylist = async () => {
@@ -19,12 +21,23 @@ export default function PlaylistDetails() {
                 const playlistData = await getArtistAlbumTracks(param.albumId);
                 setPlaylist(playlistData);
             }
-
             setIsLoading(false);
         };
 
         fetchPlaylist();
     }, [param]);
+
+    useEffect(() => {
+        if (!playlist) {
+            return;
+        }
+        const getColor = async () => {
+            let color = await getImageColor(playlist.images[0]?.url);
+            setImageColor(color);
+        };
+
+        getColor();
+    }, [playlist]);
 
     let subheading;
     if (playlist.owner) {
@@ -57,7 +70,12 @@ export default function PlaylistDetails() {
 
     return playlist && !isLoading ? (
         <div className="max-w-[1500px] mx-auto">
-            <div className="mb-10 flex flex-col gap-8 md:items-end md:flex-row md:max-h-[200px]">
+            <div
+                style={{
+                    backgroundColor: imageColor,
+                }}
+                className="rounded-md p-10 mb-10 flex flex-col gap-8 md:items-center md:flex-row bg-gradient-to-t from-neutral-800"
+            >
                 <img
                     src={playlist.images[0]?.url}
                     alt=""

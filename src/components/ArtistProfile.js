@@ -4,6 +4,7 @@ import { getArtist, getArtistAlbums, getArtistTopTrack } from "../api";
 import Loader from "./Loader";
 import numbersWithCommas from "../utils/numsWithCommas";
 import TrackItem from "./TrackItem";
+import getImageColor from "../utils/imageColor";
 
 export default function ArtistProfile() {
     const { artistId } = useParams();
@@ -12,6 +13,7 @@ export default function ArtistProfile() {
     const [albums, setAlbums] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [hideContent, setHideContent] = useState(true);
+    const [imageColor, setImageColor] = useState("");
 
     useEffect(() => {
         const fetchArtist = async () => {
@@ -27,9 +29,26 @@ export default function ArtistProfile() {
         fetchArtist();
     }, [artistId]);
 
+    useEffect(() => {
+        if (!artist) {
+            return;
+        }
+        const getColor = async () => {
+            let color = await getImageColor(artist.images[0]?.url);
+            setImageColor(color);
+        };
+
+        getColor();
+    }, [artist]);
+
     return artist && topTracks && albums && !isLoading ? (
         <div className="flex flex-col gap-10">
-            <div className="flex flex-col gap-8 md:items-end md:flex-row">
+            <div
+                style={{
+                    backgroundColor: imageColor,
+                }}
+                className="rounded-md p-10 flex flex-col gap-8 md:items-end md:flex-row bg-gradient-to-t from-neutral-800"
+            >
                 <img
                     src={artist.images[0]?.url}
                     alt=""
