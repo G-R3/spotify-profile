@@ -28,7 +28,7 @@ export default function User() {
     if (!user || !following || !topTracks || !topArtists) return <Loader />;
 
     return (
-        <div className="flex flex-col gap-16 max-w-7xl mx-auto">
+        <div className="py-10 px-5 flex flex-col gap-16 max-w-7xl mx-auto">
             <section className="flex flex-col items-center sm:flex-row sm:items-end gap-8">
                 <img
                     src={user.images[0].url}
