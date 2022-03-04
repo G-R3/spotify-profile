@@ -13,6 +13,7 @@
         "cors": "^2.8.5",
         "dotenv": "^12.0.3",
         "express": "^4.17.2",
+        "fast-average-color": "^7.1.0",
         "postcss": "^8.4.5",
         "qs": "^6.10.3",
         "react": "^17.0.2",
