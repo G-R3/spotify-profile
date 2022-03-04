@@ -12,9 +12,11 @@ export default function Sidebar() {
         // background color: bg-black
         // li text-color: text-neutral-400    hover: text-white
         // li background-color on hover: bg-neutral-800
-        <nav className="bg-black w-full py-4 lg:w-52 fixed transition shadow-lg">
+        <nav className="bg-black w-full px-2 py-4 lg:w-52 sticky lg:fixed top-0 z-10 transition shadow-lg">
             <div className="flex justify-center">
-                <span className="font-bold text-3xl">SpotifyStats</span>
+                <span className="font-bold text-xl md:text-3xl">
+                    SpotifyStats
+                </span>
                 <button onClick={expand} className="ml-auto lg:hidden">
                     Expand
                 </button>
