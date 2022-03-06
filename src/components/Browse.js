@@ -5,11 +5,7 @@ export default function Browse() {
     const [featuredPlaylists, setFeaturedPlaylists] = useState(null);
 
     useEffect(() => {
-        const getFeatured = async () => {
-            const { playlists } = await getFeaturedPlaylists();
-            console.log(playlists);
-            setFeaturedPlaylists(playlists);
-        };
+        const getFeatured = async () => {};
 
         getFeatured();
     }, []);
@@ -17,7 +13,6 @@ export default function Browse() {
         featuredPlaylists && (
             <div>
                 <h1>Featured</h1>
-                
             </div>
         )
     );
