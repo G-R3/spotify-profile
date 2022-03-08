@@ -4,8 +4,8 @@ import { milliToMinutesAndSeconds } from "../utils/utils";
 
 export default function TrackItem({ track, index }) {
     return (
-        <div className="py-3 px-5 flex items-center justify-between gap-4 text-sm hover:bg-neutral-800 rounded-md group w-full">
-            <div className="flex gap-5 items-center">
+        <div className="py-3 px-5 grid sm:grid-cols-4 md:grid-cols-8 items-center gap-4 text-sm hover:bg-neutral-800 rounded-md group w-full">
+            <div className="flex items-center sm:col-span-3 md:col-span-5 gap-5">
                 {index || index === 0 ? (
                     <span className="text-neutral-400 font-semibold text-xs">
                         {index + 1}
@@ -21,13 +21,13 @@ export default function TrackItem({ track, index }) {
                     />
                 )}
                 <div>
-                    <h3 className="w-[20ch] sm:w-[35ch] text-xs truncate md:text-sm">
+                    <h3 className="text-xs md:text-sm">
                         {track.external_urls.spotify ? (
                             <a
                                 href={track.external_urls.spotify}
                                 target={"_blank"}
                                 rel="noreferrer"
-                                className="font-semibold"
+                                className="one-line-ellipsis font-semibold"
                             >
                                 {track.name}
                             </a>
@@ -49,20 +49,18 @@ export default function TrackItem({ track, index }) {
             </div>
 
             {track.album && (
-                <span
-                    className="w-[30ch] truncate text-xs text-neutral-400 hover:underline 
-  hover:text-white hover:underline-offset-1 hidden sm:inline"
-                >
+                <span className="hidden text-xs text-neutral-400 hover:underline hover:text-white hover:underline-offset-1 sm:flex sm:col-span-1 md:col-span-2">
                     <a
                         href={track.album.external_urls.spotify}
                         target={"_blank"}
                         rel="noreferrer"
+                        className="one-line-ellipsis"
                     >
                         {track.album.name}
                     </a>
                 </span>
             )}
-            <span className=" text-neutral-400 hidden sm:inline">
+            <span className="md:col-span-1 hidden justify-end text-neutral-400 md:flex">
                 {milliToMinutesAndSeconds(track.duration_ms)}
             </span>
         </div>

@@ -14,7 +14,9 @@ export default function Artist({ artist }) {
                     className="w-48 h-48 rounded-full group-hover:shadow-lg"
                 />
                 <div>
-                    <h3 className="font-bold">{artist.name}</h3>
+                    <h3 className="font-bold one-line-ellipsis">
+                        {artist.name}
+                    </h3>
                     <p className="capitalize text-xs text-neutral-400">
                         {artist.type}
                     </p>
