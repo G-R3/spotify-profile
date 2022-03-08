@@ -4,9 +4,9 @@ import NavBar from "./Sidebar";
 
 export default function Layout() {
     return (
-        <div className="min-h-screen">
+        <div className="flex flex-col lg:flex-row">
             <NavBar />
-            <main className="lg:ml-52">
+            <main className="flex-grow lg:ml-52">
                 <Outlet />
             </main>
         </div>
