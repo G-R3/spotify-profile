@@ -1,10 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { BiLibrary, BiHomeAlt } from "react-icons/bi";
-import { AiOutlineSearch } from "react-icons/ai";
+import { AiOutlineSearch, AiOutlineMenu } from "react-icons/ai";
 
 export default function Sidebar() {
     const expand = () => {
+        document
+            .querySelector(".sidebar")
+            .classList.toggle("-translate-x-full");
+    };
+
+    const handleClick = () => {
         document
             .querySelector(".sidebar")
             .classList.toggle("-translate-x-full");
@@ -14,19 +20,20 @@ export default function Sidebar() {
         // background color: bg-black
         // li text-color: text-neutral-400    hover: text-white
         // li background-color on hover: bg-neutral-800
-        <nav className="bg-black px-2 py-4 lg:w-52 sticky lg:fixed top-0 left-0 transition shadow-lg">
+        <nav className="bg-black px-5 py-4 lg:w-52 sticky lg:fixed top-0 left-0 transition shadow-lg z-10">
             <div className="flex justify-between">
                 <span className="font-bold text-xl md:text-3xl">
                     SpotifyStats
                 </span>
                 <button onClick={expand} className="lg:hidden">
-                    Expand
+                    <AiOutlineMenu size={20} />
                 </button>
             </div>
             <ul className="sidebar text-lg absolute left-0 bg-black w-52 h-screen -translate-x-full transition-transform py-4 px-3 lg:-translate-x-0 lg:w-full lg:relative lg:px-0">
                 <li className="rounded-md hover:bg-neutral-800">
                     <Link
                         to="/profile"
+                        onClick={handleClick}
                         className="p-2 font-semibold flex items-center gap-2"
                     >
                         <BiHomeAlt />
@@ -36,6 +43,7 @@ export default function Sidebar() {
                 <li className="rounded-md hover:bg-neutral-800">
                     <Link
                         to="/library"
+                        onClick={handleClick}
                         className="p-2 font-semibold flex items-center gap-2"
                     >
                         <BiLibrary />
@@ -45,6 +53,7 @@ export default function Sidebar() {
                 <li className="rounded-md hover:bg-neutral-800">
                     <Link
                         to="/browse"
+                        onClick={handleClick}
                         className="p-2 font-semibold flex items-center gap-2"
                     >
                         <AiOutlineSearch />
