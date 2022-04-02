@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import UserTopTracks from "./UserTopTracks";
 import UserTopArtists from "./UserTopArtists";
-import { getUserData } from "../api";
-import Loader from "./Loader";
+import { getUserData } from "../../api";
+import Loader from "../Loader";
 import { Link } from "react-router-dom";
-import getImageColor from "../utils/imageColor";
+import getImageColor from "../../utils/imageColor";
 
 export default function User() {
     const [user, setUser] = useState("");

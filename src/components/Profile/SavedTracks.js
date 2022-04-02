@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
-import { getUserSavedTracks } from "../api";
-import Loader from "./Loader";
-import TrackItem from "./TrackItem";
+import { getUserSavedTracks } from "../../api";
+import Loader from "../Loader";
+import TrackItem from "../TrackItem";
 
 export default function SavedTracks() {
     const [savedTracks, setSavedTracks] = useState(null);

@@ -1,6 +1,6 @@
 import React from "react";
-import useGetItems from "../hooks/useGetItems";
-import TrackItem from "./TrackItem";
+import useGetItems from "../../hooks/useGetItems";
+import TrackItem from "../TrackItem";
 
 export default function UserTopTracks({ tracks }) {
     let { data, getNext, getPrevious } = useGetItems(tracks);

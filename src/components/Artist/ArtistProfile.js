@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getArtist, getArtistAlbums, getArtistTopTrack } from "../api";
-import Loader from "./Loader";
-import numbersWithCommas from "../utils/numsWithCommas";
-import TrackItem from "./TrackItem";
-import getImageColor from "../utils/imageColor";
+import { getArtist, getArtistAlbums, getArtistTopTrack } from "../../api";
+import Loader from "../Loader";
+import numbersWithCommas from "../../utils/numsWithCommas";
+import TrackItem from "../TrackItem";
+import getImageColor from "../../utils/imageColor";
+import AlbumCard from "./AlbumCard";
 
 export default function ArtistProfile() {
     const { artistId } = useParams();
@@ -101,38 +102,8 @@ export default function ArtistProfile() {
             <section className="px-5">
                 <h2 className="text-2xl font-bold mb-5">Albums</h2>
                 <div className="grid grid-cols-auto-fit gap-10 pb-10">
-                    {albums.items.map((album, i) => (
-                        <Link
-                            key={album.id}
-                            to={`/album/${album.id}`}
-                            className="flex flex-col items-center py-5 px-2 rounded-md text-sm bg-neutral-900 shadow-lg hover:bg-neutral-800 transition-all group"
-                        >
-                            <div className="flex flex-col gap-5">
-                                <div className="relative mb-4">
-                                    <div className="relative pb-[100%] w-full">
-                                        <div>
-                                            <img
-                                                src={album.images[0]?.url}
-                                                alt=""
-                                                className="rounded-md block h-full lef-0 top-0 absolute w-full group-hover:shadow-lg"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <h2 className="font-bold truncate w-[25ch]">
-                                        {album.name}
-                                    </h2>
-                                    <p className="text-neutral-400 font-semibold mt-1">
-                                        {new Date(
-                                            album.release_date,
-                                        ).getFullYear()}{" "}
-                                        - <span>{album.type}</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </Link>
+                    {albums.items.map((album) => (
+                        <AlbumCard album={album} key={album.id} />
                     ))}
                 </div>
             </section>

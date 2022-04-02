@@ -1,6 +1,6 @@
 import React from "react";
-import useGetItems from "../hooks/useGetItems";
-import ArtistCard from "./ArtistCard";
+import useGetItems from "../../hooks/useGetItems";
+import ArtistCard from "../Artist/ArtistCard";
 
 export default function UserTopArtists({ artists }) {
     let { data, getNext, getPrevious } = useGetItems(artists);

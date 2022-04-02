@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Login from "./Login";
-import Profile from "./Profile";
+import Profile from "./Profile/Profile";
 import Layout from "./Layout";
 import token from "../api/index";
 import Library from "./Library";
 import PlaylistDetails from "./PlaylistDetails";
 import Browse from "./Browse";
-import ArtistProfile from "./ArtistProfile";
-import SavedTracks from "./SavedTracks";
+import ArtistProfile from "./Artist/ArtistProfile";
+import SavedTracks from "./Profile/SavedTracks";
 
 function App() {
     const [accessToken, setAccessToken] = useState("");
