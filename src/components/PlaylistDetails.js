@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useState } from "react/cjs/react.development";
 import { getArtistAlbumTracks, getPlaylist } from "../api";
 import Loader from "./Loader";
 import TrackItem from "./TrackItem";

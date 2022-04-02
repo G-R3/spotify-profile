@@ -133,7 +133,14 @@ const getUserPlaylists = async (
 
     return result;
 };
-
+const getUserSavedTracks = async () => {
+    const response = await axios.get(`https://api.spotify.com/v1/me/tracks`, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    return response.data;
+};
 const getPlaylist = async (playlistId) => {
     const response = await axios.get(
         `https://api.spotify.com/v1/playlists/${playlistId}`,
@@ -219,6 +226,7 @@ const getUserData = () => {
 export {
     getUserData,
     getUserPlaylists,
+    getUserSavedTracks,
     getPlaylist,
     getItems,
     getArtist,

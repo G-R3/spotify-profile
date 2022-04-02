@@ -8,6 +8,7 @@ import Library from "./Library";
 import PlaylistDetails from "./PlaylistDetails";
 import Browse from "./Browse";
 import ArtistProfile from "./ArtistProfile";
+import SavedTracks from "./SavedTracks";
 
 function App() {
     const [accessToken, setAccessToken] = useState("");
@@ -35,6 +36,7 @@ function App() {
                         <Route path=":albumId" element={<PlaylistDetails />} />
                     </Route>
                     <Route path="/browse" element={<Browse />} />
+                    <Route path="/saved" element={<SavedTracks />} />
                 </Route>
             </Routes>
         </div>
