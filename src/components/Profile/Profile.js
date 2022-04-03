@@ -10,18 +10,14 @@ import Banner from "../Banner";
 export default function User() {
     const [user, setUser] = useState("");
     const [following, setFollowing] = useState("");
-    const [topTracks, setTopTracks] = useState("");
     const [topArtists, setTopArtists] = useState("");
     const [imageColor, setImageColor] = useState("");
 
     useEffect(() => {
         const fetchUser = async () => {
-            const { user, following, topArtists, topTracks } =
-                await getUserData();
-
+            const { user, following, topArtists } = await getUserData();
             setFollowing(following.artists.total);
             setTopArtists(topArtists);
-            setTopTracks(topTracks);
             setUser(user);
         };
 
@@ -40,7 +36,7 @@ export default function User() {
         getColor();
     }, [user]);
 
-    if (!user || !following || !topTracks || !topArtists) return <Loader />;
+    if (!user || !following || !topArtists) return <Loader />;
 
     const subheading = (
         <div>
@@ -68,7 +64,7 @@ export default function User() {
                 <UserTopArtists artists={topArtists} />
             </section>
             <section>
-                <UserTopTracks tracks={topTracks} />
+                <UserTopTracks user={user.id} />
             </section>
         </div>
     );
