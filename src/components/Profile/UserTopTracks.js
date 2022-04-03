@@ -1,4 +1,5 @@
 import React from "react";
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import useGetItems from "../../hooks/useGetItems";
 import TrackItem from "../Playlists/TrackItem";
 
@@ -15,14 +16,14 @@ export default function UserTopTracks({ tracks }) {
                         className="hover:bg-neutral-800 py-1 px-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
                         disabled={!data.previous}
                     >
-                        &#60;
+                        <AiOutlineArrowLeft />
                     </button>
                     <button
                         onClick={() => getNext(data.next)}
                         className="hover:bg-neutral-800 py-1 px-2 rounded  disabled:opacity-50 disabled:cursor-not-allowed"
                         disabled={!data.next}
                     >
-                        &#62;
+                        <AiOutlineArrowRight />
                     </button>
                 </div>
             </div>
