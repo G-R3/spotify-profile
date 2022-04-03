@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getUserPlaylists } from "../../api/index";
-import { getItems } from "../../api/index";
 import Loader from "../Loader";
 
 export default function UserPlaylists() {
     const [playlists, setPlaylists] = useState("");
-    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchPlaylists = async () => {
@@ -16,17 +14,6 @@ export default function UserPlaylists() {
 
         fetchPlaylists();
     }, []);
-
-    const getNext = async (url) => {
-        setLoading(true);
-        const { items, next, total } = await getItems(url);
-        setPlaylists((prevState) => ({
-            items: [...prevState.items, ...items],
-            next,
-            total,
-        }));
-        setLoading(false);
-    };
 
     return playlists ? (
         <>
