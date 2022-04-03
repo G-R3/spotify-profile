@@ -21,7 +21,7 @@ export default function Library() {
             <div className="grid grid-cols-auto-fit gap-10 pb-10">
                 <Link
                     to="/saved"
-                    className="sm:col-span-2 rounded-md py-5 bg-gradient-to-tl from-sky-500 to-indigo-500 flex flex-col items-center justify-center gap-5 hover:cursor-pointer hover:shadow-lg"
+                    className="sm:col-span-2 rounded-md py-5 bg-gradient-to-tl from-violet-500 to-indigo-700 flex flex-col items-center justify-center gap-5 hover:cursor-pointer hover:shadow-lg"
                 >
                     <FaHeart className="text-5xl" />
                     <h2 className="text-2xl font-bold">Liked Songs</h2>
