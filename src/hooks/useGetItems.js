@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getItems } from "../api";
+import { getItems } from "../api/user";
 
 export default function useGetItems(initialData) {
     const [data, setData] = useState(initialData);

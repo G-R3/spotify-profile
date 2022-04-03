@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./Login";
 import Profile from "./Profile/Profile";
 import Layout from "./Layout";
-import token from "../api/index";
+import { token } from "../api/token";
 import Library from "./Library";
 import PlaylistDetails from "./Playlists/PlaylistDetails";
 import Browse from "./Browse";

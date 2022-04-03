@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
-import { getUserSavedTracks } from "../../api";
+import { getUserSavedTracks } from "../../api/user";
 import Loader from "../Loader";
 import TrackItem from "../Playlists/TrackItem";
 

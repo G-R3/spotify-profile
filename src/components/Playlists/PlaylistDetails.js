@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getArtistAlbumTracks, getPlaylist } from "../../api";
+import { getArtistAlbumTracks } from "../../api/artist";
+import { getPlaylist } from "../../api/user";
 import Loader from "../Loader";
 import getImageColor from "../../utils/imageColor";
 import Playlist from "./Playlist";

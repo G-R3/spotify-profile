@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getUserPlaylists } from "../api";
+import { getUserPlaylists } from "../api/user";
 import Loader from "./Loader";
 import { FaHeart } from "react-icons/fa";
 import PlaylistCard from "./Playlists/PlaylistCard";

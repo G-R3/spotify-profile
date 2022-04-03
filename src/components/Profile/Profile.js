@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import UserTopTracks from "./UserTopTracks";
 import UserTopArtists from "./UserTopArtists";
-import { getUserData } from "../../api";
+import { getUserData } from "../../api/user";
 import Loader from "../Loader";
 import { Link } from "react-router-dom";
 import getImageColor from "../../utils/imageColor";

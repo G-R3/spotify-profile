@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getArtist, getArtistAlbums, getArtistTopTrack } from "../../api";
+import {
+    getArtist,
+    getArtistAlbums,
+    getArtistTopTrack,
+} from "../../api/artist";
 import Loader from "../Loader";
 import numbersWithCommas from "../../utils/numsWithCommas";
 import TrackItem from "../Playlists/TrackItem";
