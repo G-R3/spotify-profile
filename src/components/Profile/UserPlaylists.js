@@ -51,17 +51,6 @@ export default function UserPlaylists() {
                     </Link>
                 ))}
             </div>
-            {playlists.next &&
-                (loading ? (
-                    <Loader />
-                ) : (
-                    <button
-                        onClick={() => getNext(playlists.next)}
-                        className="bg-neutral-800 text-spotify-green mt-8 mx-auto block p-2 rounded-md"
-                    >
-                        Load More
-                    </button>
-                ))}
         </>
     ) : (
         <Loader />
