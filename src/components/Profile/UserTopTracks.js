@@ -1,39 +1,100 @@
-import React from "react";
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
-import useGetItems from "../../hooks/useGetItems";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+    getTopTracks,
+    createPlaylist,
+    getTrackUris,
+    addTracksToPlaylist,
+} from "../../api/user";
+import Modal from "../Modal";
 import TrackItem from "../Playlists/TrackItem";
 
-export default function UserTopTracks({ tracks }) {
-    let { data, getNext, getPrevious } = useGetItems(tracks);
+export default function UserTopTracks({ user }) {
+    const [tracks, setTracks] = useState(null);
+    const [query, setQuery] = useState("long_term");
+    const [showModal, setShowModal] = React.useState(false);
+    const navigate = useNavigate();
 
-    return data ? (
+    useEffect(() => {
+        const fetchTrack = async () => {
+            const tracks = await getTopTracks("long_term");
+            setTracks(tracks);
+        };
+
+        fetchTrack();
+    }, []);
+
+    const handleClick = async (query) => {
+        const tracks = await getTopTracks(query);
+        setTracks(tracks);
+        setQuery(query);
+    };
+
+    const createNewPlaylist = async (data) => {
+        const { id: playlistId } = await createPlaylist(user, data);
+        const uris = getTrackUris(tracks.items);
+
+        await addTracksToPlaylist(playlistId, JSON.stringify({ uris: uris }));
+        navigate(`/playlist/${playlistId}`);
+    };
+
+    return tracks ? (
         <div>
-            <div className="flex justify-between mb-4">
+            <div className="flex flex-col gap-5 md:flex-row items-center justify-between mb-4">
                 <h2 className="text-lg font-bold">Top tracks this month</h2>
-                <div className="flex">
+                <div className="flex flex-col gap-5 md:gap-10 md:flex-row text-neutral-400">
                     <button
-                        onClick={() => getPrevious(data.previous)}
-                        className="hover:bg-neutral-800 py-1 px-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
-                        disabled={!data.previous}
+                        onClick={() => setShowModal(true)}
+                        className="border-2 p-2 rounded-md text-white hover:bg-white hover:text-black transition-colors order-2 md:order-1"
                     >
-                        <AiOutlineArrowLeft />
+                        Create Playlist
                     </button>
-                    <button
-                        onClick={() => getNext(data.next)}
-                        className="hover:bg-neutral-800 py-1 px-2 rounded  disabled:opacity-50 disabled:cursor-not-allowed"
-                        disabled={!data.next}
-                    >
-                        <AiOutlineArrowRight />
-                    </button>
+                    {showModal && (
+                        <Modal
+                            setShowModal={setShowModal}
+                            createPlaylist={createNewPlaylist}
+                        />
+                    )}
+
+                    <div className="flex gap-10 order-1 md:order-2">
+                        <button
+                            onClick={() => handleClick("long_term")}
+                            className={`${
+                                query === "long_term" && "text-white"
+                            }`}
+                        >
+                            All Time
+                        </button>
+                        <button
+                            onClick={() => handleClick("medium_term")}
+                            className={`${
+                                query === "medium_term" && "text-white"
+                            }`}
+                        >
+                            Last 6 Months
+                        </button>
+                        <button
+                            onClick={() => handleClick("short_term")}
+                            className={`${
+                                query === "short_term" && "text-white"
+                            }`}
+                        >
+                            Last 4 Weeks
+                        </button>
+                    </div>
                 </div>
             </div>
             <div className="flex flex-col gap-2">
-                {data.items.map((track, i) => (
-                    <TrackItem key={track.id ? track.id : i} track={track} />
+                {tracks.items.map((track, i) => (
+                    <TrackItem
+                        key={track.id ? track.id : i}
+                        track={track}
+                        index={i}
+                    />
                 ))}
             </div>
         </div>
     ) : (
-        <p className="w-full lg:w-[400px] h-16 text-center">Loading...</p>
+        <p className="w-full h-16 text-center">Loading...</p>
     );
 }
