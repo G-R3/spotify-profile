@@ -32,12 +32,12 @@ export default function Sidebar() {
             <ul className="sidebar text-lg absolute left-0 bg-black w-52 h-screen -translate-x-full transition-transform py-4 px-3 lg:-translate-x-0 lg:w-full lg:relative lg:px-0">
                 <li className="rounded-md hover:bg-neutral-800">
                     <Link
-                        to="/profile"
+                        to="/"
                         onClick={handleClick}
                         className="p-2 font-semibold flex items-center gap-2"
                     >
                         <BiHomeAlt />
-                        Profile
+                        Home
                     </Link>
                 </li>
                 <li className="rounded-md hover:bg-neutral-800">
@@ -48,16 +48,6 @@ export default function Sidebar() {
                     >
                         <BiLibrary />
                         Library
-                    </Link>
-                </li>
-                <li className="rounded-md hover:bg-neutral-800">
-                    <Link
-                        to="/browse"
-                        onClick={handleClick}
-                        className="p-2 font-semibold flex items-center gap-2"
-                    >
-                        <AiOutlineSearch />
-                        Browse
                     </Link>
                 </li>
             </ul>

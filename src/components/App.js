@@ -6,7 +6,6 @@ import Layout from "./Layout";
 import { token } from "../api/token";
 import Library from "./Library";
 import PlaylistDetails from "./Playlists/PlaylistDetails";
-import Browse from "./Browse";
 import ArtistProfile from "./Artist/ArtistProfile";
 import SavedTracks from "./Profile/SavedTracks";
 
@@ -21,7 +20,7 @@ function App() {
         <div className="h-full">
             <Routes>
                 <Route path="/" element={accessToken ? <Layout /> : <Login />}>
-                    <Route index path="/profile" element={<Profile />} />
+                    <Route index element={<Profile />} />
                     <Route path="/library" element={<Library />} />
                     <Route path="/playlist">
                         <Route
@@ -35,7 +34,6 @@ function App() {
                     <Route path="/album">
                         <Route path=":albumId" element={<PlaylistDetails />} />
                     </Route>
-                    <Route path="/browse" element={<Browse />} />
                     <Route path="/saved" element={<SavedTracks />} />
                 </Route>
             </Routes>
