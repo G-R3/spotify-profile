@@ -5,7 +5,7 @@ import Profile from "./Profile/Profile";
 import Layout from "./Layout";
 import token from "../api/index";
 import Library from "./Library";
-import PlaylistDetails from "./PlaylistDetails";
+import PlaylistDetails from "./Playlists/PlaylistDetails";
 import Browse from "./Browse";
 import ArtistProfile from "./Artist/ArtistProfile";
 import SavedTracks from "./Profile/SavedTracks";
