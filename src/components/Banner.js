@@ -15,25 +15,27 @@ export default function Banner({
                 style={{
                     backgroundColor: backgroundColor,
                 }}
-                className="rounded-md py-20 px-10 mb-10 flex flex-col gap-8 md:items-center md:flex-row bg-gradient-to-t from-neutral-800"
+                className="rounded-md py-20 px-10 mb-10 flex flex-col items-center gap-8 md:flex-row bg-gradient-to-t from-neutral-800"
             >
                 <img
                     src={images[0]?.url}
                     alt=""
-                    className={`w-60 h-60 shadow-lg ${
-                        type === "PROFILE" || type === "ARTIST"
+                    className={`w-64 h-64 shadow-lg ${
+                        type.toLowerCase() === "profile" || type === "artist"
                             ? "rounded-full"
                             : ""
                     }`}
                 />
-                <div className="flex flex-col gap-5">
+                <div className="flex flex-col items-center md:items-start gap-5">
                     <span className="uppercase font-semibold text-xs">
                         {type}
                     </span>
                     {/* how to scale font-size if goes beyond width of its container */}
                     <h1 className="text-3xl lg:text-5xl font-bold">{name}</h1>
                     {description && (
-                        <p className="text-neutral-400">{description}</p>
+                        <p className="text-neutral-400 max-w-4xl">
+                            {description}
+                        </p>
                     )}
                     <div className="flex items-center flex-row gap-5">
                         {subheading}
