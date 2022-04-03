@@ -1,15 +1,15 @@
 import axios from "axios";
-import { header } from "./token";
+import { headers } from "./token";
 
 const getUser = async () => {
     return axios.get("https://api.spotify.com/v1/me", {
-        header,
+        headers,
     });
 };
 
 const getFollowing = async () => {
     return axios.get("https://api.spotify.com/v1/me/following?type=artist", {
-        header,
+        headers,
     });
 };
 
@@ -17,7 +17,7 @@ const getTopTracks = async () => {
     return axios.get(
         "https://api.spotify.com/v1/me/top/tracks?limit=5&time_range=short_term",
         {
-            header,
+            headers,
         },
     );
 };
@@ -25,7 +25,7 @@ const getTopArtists = async () => {
     return await axios.get(
         "https://api.spotify.com/v1/me/top/artists?limit=5&time_range=short_term",
         {
-            header,
+            headers,
         },
     );
 };
@@ -34,7 +34,7 @@ const getUserPlaylists = async (
     data = [],
 ) => {
     let response = await axios.get(url, {
-        header,
+        headers,
     });
     // let result = [...data, ...response.data.items];
     let result = data.concat(response.data.items);
@@ -47,7 +47,7 @@ const getUserPlaylists = async (
 };
 const getUserSavedTracks = async () => {
     const response = await axios.get(`https://api.spotify.com/v1/me/tracks`, {
-        header,
+        headers,
     });
 
     return response.data;
@@ -57,7 +57,7 @@ const getPlaylist = async (playlistId) => {
     const response = await axios.get(
         `https://api.spotify.com/v1/playlists/${playlistId}`,
         {
-            header,
+            headers,
         },
     );
 
@@ -83,7 +83,7 @@ const getUserData = () => {
 
 const getItems = async (url) => {
     let response = await axios.get(url, {
-        header,
+        headers,
     });
 
     return response.data;

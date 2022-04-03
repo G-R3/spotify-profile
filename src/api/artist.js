@@ -1,11 +1,11 @@
 import axios from "axios";
-import { header } from "./token";
+import { headers } from "./token";
 
 const getArtist = async (artistId) => {
     const response = await axios.get(
         `https://api.spotify.com/v1/artists/${artistId}`,
         {
-            header,
+            headers,
         },
     );
 
@@ -15,7 +15,7 @@ const getArtistTopTrack = async (artistId) => {
     const response = await axios.get(
         `https://api.spotify.com/v1/artists/${artistId}/top-tracks?market=ES`,
         {
-            header,
+            headers,
         },
     );
 
@@ -25,7 +25,7 @@ const getArtistAlbums = async (artistId) => {
     const response = await axios.get(
         `https://api.spotify.com/v1/artists/${artistId}/albums?market=ES&include_groups=album`,
         {
-            header,
+            headers,
         },
     );
 
@@ -35,7 +35,7 @@ const getArtistAlbumTracks = async (albumId) => {
     const response = await axios.get(
         `https://api.spotify.com/v1/albums/${albumId}`,
         {
-            header,
+            headers,
         },
     );
 

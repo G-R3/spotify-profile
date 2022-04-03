@@ -75,8 +75,8 @@ const getAccessToken = () => {
 };
 
 let token = getAccessToken();
-let header = {
+let headers = {
     Authorization: `Bearer ${token}`,
 };
 
-export { token, header };
+export { token, headers };
