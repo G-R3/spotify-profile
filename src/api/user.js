@@ -13,13 +13,15 @@ const getFollowing = async () => {
     });
 };
 
-const getTopTracks = async () => {
-    return axios.get(
-        "https://api.spotify.com/v1/me/top/tracks?limit=5&time_range=short_term",
+const getTopTracks = async (query) => {
+    const response = await axios.get(
+        `https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=${query}`,
         {
             headers,
         },
     );
+
+    return response.data;
 };
 const getTopArtists = async () => {
     return await axios.get(
@@ -65,20 +67,17 @@ const getPlaylist = async (playlistId) => {
 };
 
 const getUserData = () => {
-    return axios
-        .all([getUser(), getFollowing(), getTopArtists(), getTopTracks()])
-        .then(
-            axios.spread((user, following, artists, tracks) => {
-                const data = {
-                    user: user.data,
-                    following: following.data,
-                    topArtists: artists.data,
-                    topTracks: tracks.data,
-                };
+    return axios.all([getUser(), getFollowing(), getTopArtists()]).then(
+        axios.spread((user, following, artists, tracks) => {
+            const data = {
+                user: user.data,
+                following: following.data,
+                topArtists: artists.data,
+            };
 
-                return data;
-            }),
-        );
+            return data;
+        }),
+    );
 };
 
 const getItems = async (url) => {
@@ -89,10 +88,38 @@ const getItems = async (url) => {
     return response.data;
 };
 
+const createPlaylist = async (userId, data) => {
+    const response = await axios.post(
+        `https://api.spotify.com/v1/users/${userId}/playlists`,
+        data,
+        { headers },
+    );
+
+    return response.data;
+};
+
+const getTrackUris = (tracks) => {
+    return tracks.map((track) => track.uri);
+};
+
+const addTracksToPlaylist = async (playlistId, uris) => {
+    const response = await axios.post(
+        `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+        uris,
+        { headers },
+    );
+
+    console.log(response);
+};
+
 export {
     getUserData,
     getUserPlaylists,
     getUserSavedTracks,
+    getTopTracks,
     getPlaylist,
     getItems,
+    createPlaylist,
+    getTrackUris,
+    addTracksToPlaylist,
 };
