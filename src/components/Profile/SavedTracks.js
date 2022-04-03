@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { getUserSavedTracks } from "../../api";
 import Loader from "../Loader";
-import TrackItem from "../TrackItem";
+import TrackItem from "../Playlists/TrackItem";
 
 export default function SavedTracks() {
     const [savedTracks, setSavedTracks] = useState(null);

@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getArtist, getArtistAlbums, getArtistTopTrack } from "../../api";
 import Loader from "../Loader";
 import numbersWithCommas from "../../utils/numsWithCommas";
-import TrackItem from "../TrackItem";
+import TrackItem from "../Playlists/TrackItem";
 import getImageColor from "../../utils/imageColor";
 import AlbumCard from "./AlbumCard";
+import Banner from "../Banner";
 
 export default function ArtistProfile() {
     const { artistId } = useParams();
     const [artist, setArtist] = useState("");
     const [topTracks, setTopTracks] = useState("");
     const [albums, setAlbums] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
     const [hideContent, setHideContent] = useState(true);
     const [imageColor, setImageColor] = useState("");
 
@@ -23,8 +23,7 @@ export default function ArtistProfile() {
             const albums = await getArtistAlbums(artistId);
             setArtist(artist);
             setTopTracks(tracks);
-            setAlbums(albums);
-            setIsLoading(false);
+            setAlbums(albums.items);
         };
 
         fetchArtist();
@@ -42,33 +41,23 @@ export default function ArtistProfile() {
         getColor();
     }, [artist]);
 
-    return artist && topTracks && albums && !isLoading ? (
-        <div className="flex flex-col gap-10">
-            <div
-                style={{
-                    backgroundColor: imageColor,
-                }}
-                className="rounded-md py-20 px-10 flex flex-col gap-8 md:items-end md:flex-row bg-gradient-to-t from-neutral-800"
-            >
-                <img
-                    src={artist.images[0]?.url}
-                    alt=""
-                    className="w-52 h-52 rounded-full shadow-lg"
-                />
-                <div className="flex flex-col gap-5">
-                    <span className="uppercase font-semibold text-xs">
-                        {artist.type}
-                    </span>
-                    {/* how to scale font-size if goes beyond width of its container */}
-                    <h1 className="text-3xl lg:text-5xl font-bold">
-                        {artist.name}
-                    </h1>
+    if (!artist || !topTracks || !albums) return <Loader />;
 
-                    <span className="text-neutral-400 font-semibold">
-                        {numbersWithCommas(artist.followers.total)} followers
-                    </span>
-                </div>
-            </div>
+    const subheading = (
+        <span className="text-neutral-400 font-semibold">
+            {numbersWithCommas(artist.followers.total)} followers
+        </span>
+    );
+
+    return (
+        <div className="flex flex-col gap-10">
+            <Banner
+                backgroundColor={imageColor}
+                images={artist.images}
+                type={artist.type}
+                name={artist.name}
+                subheading={subheading}
+            />
 
             <section className="px-5">
                 <h2 className="text-2xl font-bold mb-5">Popular</h2>
@@ -102,13 +91,11 @@ export default function ArtistProfile() {
             <section className="px-5">
                 <h2 className="text-2xl font-bold mb-5">Albums</h2>
                 <div className="grid grid-cols-auto-fit gap-10 pb-10">
-                    {albums.items.map((album) => (
+                    {albums.map((album) => (
                         <AlbumCard album={album} key={album.id} />
                     ))}
                 </div>
             </section>
         </div>
-    ) : (
-        <Loader />
     );
 }
