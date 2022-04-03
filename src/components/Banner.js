@@ -20,7 +20,7 @@ export default function Banner({
                 <img
                     src={images[0]?.url}
                     alt=""
-                    className={`w-48 h-48 shadow-lg ${
+                    className={`w-60 h-60 shadow-lg ${
                         type === "PROFILE" || type === "ARTIST"
                             ? "rounded-full"
                             : ""
@@ -35,7 +35,7 @@ export default function Banner({
                     {description && (
                         <p className="text-neutral-400">{description}</p>
                     )}
-                    <div className="flex flex-col items-center sm:flex-row gap-5">
+                    <div className="flex items-center flex-row gap-5">
                         {subheading}
 
                         {external_urls && (
