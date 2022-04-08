@@ -44,7 +44,7 @@ export default function PlaylistDetails() {
         subheading = (
             <div>
                 <Link
-                    to={"/profile"}
+                    to={"/"}
                     className="text-sm font-semibold hover:underline hover:underline-offset-1"
                 >
                     {playlist.owner.display_name}
