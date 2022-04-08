@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import { GoPrimitiveDot } from "react-icons/go";
 import { getArtistAlbumTracks } from "../../api/artist";
 import { getPlaylist } from "../../api/user";
 import Loader from "../Loader";
@@ -55,14 +56,16 @@ export default function PlaylistDetails() {
     } else if (playlist.artists) {
         const releaseYear = new Date(playlist.release_date).getFullYear();
         subheading = (
-            <div>
+            <div className="flex items-center gap-2">
                 <Link
                     to={`/artist/${playlist.artists[0]?.id}`}
                     className="text-sm font-semibold hover:underline hover:underline-offset-1"
                 >
                     {playlist.artists[0]?.name}
                 </Link>
-                <span> - {releaseYear} - </span>
+                <GoPrimitiveDot size={10} />
+                <span>{releaseYear}</span>
+                <GoPrimitiveDot size={10} />
                 <span>{playlist.tracks.total} Songs</span>
             </div>
         );

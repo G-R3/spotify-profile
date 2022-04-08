@@ -60,7 +60,11 @@ export default function TrackItem({ track, index }) {
                     </a>
                 </span>
             )}
-            <span className="md:col-span-1 hidden justify-end text-neutral-400 md:flex">
+            <span
+                className={`${
+                    track.album ? "md:col-span-1" : "md:col-span-3"
+                } hidden justify-end text-neutral-400 md:flex`}
+            >
                 {milliToMinutesAndSeconds(track.duration_ms)}
             </span>
         </div>
