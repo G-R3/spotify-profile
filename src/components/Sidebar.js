@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { BiLibrary, BiHomeAlt } from "react-icons/bi";
-import { AiOutlineSearch, AiOutlineMenu } from "react-icons/ai";
+import { BiLibrary, BiHomeAlt, BiLogOut } from "react-icons/bi";
+import { AiOutlineMenu } from "react-icons/ai";
 
-export default function Sidebar() {
+export default function Sidebar({ onLogout }) {
     const expand = () => {
         document
             .querySelector(".sidebar")
@@ -49,6 +49,15 @@ export default function Sidebar() {
                         <BiLibrary />
                         Library
                     </Link>
+                </li>
+                <li className="rounded-md hover:bg-neutral-800">
+                    <button
+                        onClick={onLogout}
+                        className="p-2 font-semibold flex items-center gap-2 w-full"
+                    >
+                        <BiLogOut />
+                        Logout
+                    </button>
                 </li>
             </ul>
         </nav>

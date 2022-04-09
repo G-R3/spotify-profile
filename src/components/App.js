@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Login from "./Login";
 import Profile from "./Profile/Profile";
 import Layout from "./Layout";
@@ -11,15 +11,31 @@ import SavedTracks from "./Profile/SavedTracks";
 
 function App() {
     const [accessToken, setAccessToken] = useState("");
+    const navigate = useNavigate();
 
     useEffect(() => {
         setAccessToken(token);
     }, []);
 
+    const handleLogout = () => {
+        localStorage.clear();
+        setAccessToken(null);
+        navigate("/", { replace: true });
+    };
+
     return (
         <div className="h-full">
             <Routes>
-                <Route path="/" element={accessToken ? <Layout /> : <Login />}>
+                <Route
+                    path="/"
+                    element={
+                        accessToken ? (
+                            <Layout onLogout={handleLogout} />
+                        ) : (
+                            <Login />
+                        )
+                    }
+                >
                     <Route index element={<Profile />} />
                     <Route path="/library" element={<Library />} />
                     <Route path="/playlist">
