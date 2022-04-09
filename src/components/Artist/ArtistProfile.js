@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { RiUserFollowFill } from "react-icons/ri";
 import {
     getArtist,
     getArtistAlbums,
     getArtistTopTrack,
+    followArtist,
+    unfollowArtist,
 } from "../../api/artist";
+import { isUserFollowingArtist } from "../../api/user";
 import Loader from "../Loader";
 import numbersWithCommas from "../../utils/numsWithCommas";
 import TrackItem from "../Playlists/TrackItem";
@@ -16,6 +20,7 @@ export default function ArtistProfile() {
     const { artistId } = useParams();
     const [artist, setArtist] = useState("");
     const [topTracks, setTopTracks] = useState("");
+    const [following, setIsFollowing] = useState("");
     const [albums, setAlbums] = useState([]);
     const [hideContent, setHideContent] = useState(true);
     const [imageColor, setImageColor] = useState("");
@@ -25,9 +30,11 @@ export default function ArtistProfile() {
             const artist = await getArtist(artistId);
             const { tracks } = await getArtistTopTrack(artistId);
             const albums = await getArtistAlbums(artistId);
+            const isUserFollowing = await isUserFollowingArtist(artistId);
             setArtist(artist);
             setTopTracks(tracks);
             setAlbums(albums.items);
+            setIsFollowing(isUserFollowing);
         };
 
         fetchArtist();
@@ -47,10 +54,31 @@ export default function ArtistProfile() {
 
     if (!artist || !topTracks || !albums) return <Loader />;
 
+    const handleClick = async (artistId) => {
+        if (following) {
+            await unfollowArtist(artistId);
+            setIsFollowing(false);
+            return;
+        }
+
+        await followArtist(artistId);
+        setIsFollowing(true);
+        return;
+    };
+
     const subheading = (
-        <span className="text-neutral-400 font-semibold">
-            {numbersWithCommas(artist.followers.total)} followers
-        </span>
+        <div className="flex gap-5 items-center">
+            <span className="text-white font-semibold">
+                {numbersWithCommas(artist.followers.total)} followers
+            </span>
+
+            <button
+                onClick={() => handleClick(artist.id)}
+                className={`flex items-center gap-2 border-2 py-1 px-2 rounded-md text-white hover:bg-white hover:text-black transition-colors`}
+            >
+                {following ? "Following" : "Follow"} <RiUserFollowFill />
+            </button>
+        </div>
     );
 
     return (

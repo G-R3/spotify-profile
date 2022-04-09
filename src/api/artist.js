@@ -42,4 +42,26 @@ const getArtistAlbumTracks = async (albumId) => {
     return response.data;
 };
 
-export { getArtist, getArtistTopTrack, getArtistAlbums, getArtistAlbumTracks };
+const followArtist = async (artistId) => {
+    await axios.put(
+        `https://api.spotify.com/v1/me/following?type=artist`,
+        { ids: [artistId] },
+        { headers },
+    );
+};
+
+const unfollowArtist = async (artistId) => {
+    await axios.delete(
+        `https://api.spotify.com/v1/me/following?type=artist&ids=${artistId}`,
+        { headers },
+    );
+};
+
+export {
+    getArtist,
+    getArtistTopTrack,
+    getArtistAlbums,
+    getArtistAlbumTracks,
+    followArtist,
+    unfollowArtist,
+};
