@@ -108,8 +108,15 @@ const addTracksToPlaylist = async (playlistId, uris) => {
         uris,
         { headers },
     );
+};
 
-    console.log(response);
+const isUserFollowingArtist = async (artistId) => {
+    const response = await axios.get(
+        `https://api.spotify.com/v1/me/following/contains?type=artist&ids=${artistId}`,
+        { headers },
+    );
+
+    return response.data[0];
 };
 
 export {
@@ -122,4 +129,5 @@ export {
     createPlaylist,
     getTrackUris,
     addTracksToPlaylist,
+    isUserFollowingArtist,
 };
