@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../context/authContext";
 import { Link } from "react-router-dom";
 import { BiLibrary, BiHomeAlt, BiLogOut } from "react-icons/bi";
 import { AiOutlineMenu } from "react-icons/ai";
 
-export default function Sidebar({ onLogout }) {
+export default function Sidebar() {
+    const { handleLogout } = useContext(AuthContext);
+
     const expand = () => {
         document
             .querySelector(".sidebar")
@@ -17,9 +20,6 @@ export default function Sidebar({ onLogout }) {
     };
 
     return (
-        // background color: bg-black
-        // li text-color: text-neutral-400    hover: text-white
-        // li background-color on hover: bg-neutral-800
         <nav className="bg-black px-5 py-4 lg:w-52 sticky lg:fixed top-0 left-0 transition shadow-lg z-10">
             <div className="flex justify-between">
                 <span className="font-bold text-xl md:text-3xl">
@@ -52,7 +52,7 @@ export default function Sidebar({ onLogout }) {
                 </li>
                 <li className="rounded-md hover:bg-neutral-800">
                     <button
-                        onClick={onLogout}
+                        onClick={handleLogout}
                         className="p-2 font-semibold flex items-center gap-2 w-full"
                     >
                         <BiLogOut />
