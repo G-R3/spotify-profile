@@ -17,7 +17,7 @@ export default function TrackItem({ track, index }) {
                     <img
                         src={track.album?.images[0]?.url}
                         alt=""
-                        className="w-16 h-16"
+                        className="w-14 h-14"
                     />
                 )}
                 <div>

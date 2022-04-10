@@ -40,13 +40,13 @@ export default function User() {
 
     const subheading = (
         <div>
-            <Link to="/" className="text-sm text-spotify-green font-bold">
+            <p className="text-sm text-spotify-green font-bold">
                 {following}
                 <span className="text-neutral-400 font-semibold">
                     {" "}
                     Following
                 </span>
-            </Link>
+            </p>
         </div>
     );
 

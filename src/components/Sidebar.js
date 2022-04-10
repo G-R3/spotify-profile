@@ -22,9 +22,9 @@ export default function Sidebar() {
     return (
         <nav className="bg-black px-5 py-4 lg:w-52 sticky lg:fixed top-0 left-0 transition shadow-lg z-10">
             <div className="flex justify-between">
-                <span className="font-bold text-xl md:text-3xl">
-                    SpotifyStats
-                </span>
+                <Link to="/" className="font-bold text-xl md:text-2xl">
+                    Spotify Profile
+                </Link>
                 <button onClick={expand} className="lg:hidden">
                     <AiOutlineMenu size={20} />
                 </button>

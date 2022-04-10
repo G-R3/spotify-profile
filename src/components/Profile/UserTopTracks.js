@@ -41,7 +41,7 @@ export default function UserTopTracks({ user }) {
     return tracks ? (
         <div>
             <div className="flex flex-col gap-5 md:flex-row items-center justify-between mb-4">
-                <h2 className="text-lg font-bold">Top tracks this month</h2>
+                <h2 className="text-lg font-bold">Your top tracks</h2>
                 <div className="flex flex-col gap-5 md:gap-10 md:flex-row text-neutral-400">
                     <button
                         onClick={() => setShowModal(true)}

@@ -44,12 +44,9 @@ export default function PlaylistDetails() {
     if (playlist.owner) {
         subheading = (
             <div>
-                <Link
-                    to={"/"}
-                    className="text-sm font-semibold hover:underline hover:underline-offset-1"
-                >
+                <span to={"/"} className="text-sm font-bold">
                     {playlist.owner.display_name}
-                </Link>
+                </span>
                 <span> - {playlist.tracks.total} songs</span>
             </div>
         );

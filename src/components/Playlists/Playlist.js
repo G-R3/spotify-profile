@@ -14,8 +14,9 @@ export default function Playlist({ playlist, subheading, imageColor }) {
                 description={description}
                 external_urls={external_urls}
                 subheading={subheading}
+                isPublic={playlist.public}
             />
-            <div className="flex flex-col w-full">
+            <div className="flex flex-col w-full px-5">
                 {tracks.items.map((item, i) => {
                     const track = item.track ? item.track : item;
 

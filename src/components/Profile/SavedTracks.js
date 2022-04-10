@@ -36,7 +36,7 @@ export default function SavedTracks() {
                     <div className="flex flex-col items-center sm:flex-row gap-5">
                         <div>
                             <Link
-                                to={"/profile"}
+                                to={"/"}
                                 className="text-sm font-semibold hover:underline hover:underline-offset-1"
                             >
                                 OWNER

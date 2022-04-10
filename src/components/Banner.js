@@ -8,6 +8,7 @@ export default function Banner({
     description,
     external_urls,
     subheading = null,
+    isPublic,
 }) {
     return (
         <>
@@ -28,7 +29,7 @@ export default function Banner({
                 />
                 <div className="flex flex-col items-center md:items-start gap-5">
                     <span className="uppercase font-semibold text-xs">
-                        {type}
+                        {isPublic ? `PUBLIC ${type}` : `PRIVATE ${type}`}
                     </span>
                     {/* how to scale font-size if goes beyond width of its container */}
                     <h1 className="text-3xl lg:text-5xl font-bold">{name}</h1>

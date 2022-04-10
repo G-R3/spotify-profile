@@ -17,7 +17,9 @@ export default function Library() {
     }, []);
     return playlists ? (
         <div className="py-10 px-5">
-            <h1 className="text-lg font-bold mb-5">Your Playlists</h1>
+            <h1 className="text-2xl lg:text-4xl font-bold mb-10">
+                Your Playlists
+            </h1>
             <div className="grid grid-cols-auto-fit gap-10 pb-10">
                 <Link
                     to="/saved"
