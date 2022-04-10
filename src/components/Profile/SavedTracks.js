@@ -10,7 +10,6 @@ export default function SavedTracks() {
     useEffect(() => {
         const fetchUserSavedTracks = async () => {
             const tracks = await getUserSavedTracks();
-            console.log(tracks);
 
             setSavedTracks(tracks);
         };

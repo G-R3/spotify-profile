@@ -50,14 +50,12 @@ export default function TrackItem({ track, index }) {
 
             {track.album && (
                 <span className="hidden text-xs text-neutral-400 hover:underline hover:text-white hover:underline-offset-1 sm:flex sm:col-span-1 md:col-span-2">
-                    <a
-                        href={track.album.external_urls.spotify}
-                        target={"_blank"}
-                        rel="noreferrer"
+                    <Link
+                        to={`/album/${track.album.id}`}
                         className="one-line-ellipsis"
                     >
                         {track.album.name}
-                    </a>
+                    </Link>
                 </span>
             )}
             <span
