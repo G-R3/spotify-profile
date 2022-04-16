@@ -20,8 +20,8 @@ export default function SavedTracks() {
 
     return savedTracks ? (
         <>
-            <div className="flex flex-col w-full px-5">
-                <div className="rounded-md py-20 px-10 mb-10 flex flex-col gap-8 md:items-center md:flex-row bg-gradient-to-t from-neutral-800">
+            <div className="flex flex-col w-full">
+                <div className="rounded-md py-20 px-10 mb-10 flex flex-col gap-8 md:items-center md:flex-row bg-gradient-to-tl from-violet-500 to-indigo-700">
                     <div className="w-48 h-48 shadow-lg bg-gradient-to-tl from-sky-500 to-indigo-500 flex flex-col items-center justify-center gap-5 hover:shadow-lg">
                         <FaHeart className="text-5xl" />
                     </div>
