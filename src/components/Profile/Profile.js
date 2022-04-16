@@ -3,9 +3,9 @@ import UserTopTracks from "./UserTopTracks";
 import UserTopArtists from "./UserTopArtists";
 import { getUserData } from "../../api/user";
 import Loader from "../Loader";
-import { Link } from "react-router-dom";
 import getImageColor from "../../utils/imageColor";
 import Banner from "../Banner";
+import Footer from "../Footer";
 
 export default function User() {
     const [user, setUser] = useState("");
@@ -51,21 +51,24 @@ export default function User() {
     );
 
     return (
-        <div className="py-10 px-5 flex flex-col gap-16 max-w-7xl mx-auto">
-            <Banner
-                backgroundColor={imageColor}
-                images={user.images}
-                type={"PROFILE"}
-                name={user.display_name}
-                subheading={subheading}
-            />
+        <>
+            <div className="pt-10 px-5 flex flex-col gap-16 max-w-7xl mx-auto">
+                <Banner
+                    backgroundColor={imageColor}
+                    images={user.images}
+                    type={"PROFILE"}
+                    name={user.display_name}
+                    subheading={subheading}
+                />
 
-            <section>
-                <UserTopArtists artists={topArtists} />
-            </section>
-            <section>
-                <UserTopTracks user={user.id} />
-            </section>
-        </div>
+                <section>
+                    <UserTopArtists artists={topArtists} />
+                </section>
+                <section>
+                    <UserTopTracks user={user.id} />
+                </section>
+            </div>
+            <Footer />
+        </>
     );
 }

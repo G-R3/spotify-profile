@@ -1,6 +1,7 @@
 import React from "react";
 import Banner from "../Banner";
 import TrackItem from "./TrackItem";
+import Footer from "../Footer";
 
 export default function Playlist({ playlist, subheading, imageColor }) {
     const { images, type, name, description, external_urls, tracks } = playlist;
@@ -29,6 +30,7 @@ export default function Playlist({ playlist, subheading, imageColor }) {
                     );
                 })}
             </div>
+            <Footer />
         </>
     );
 }

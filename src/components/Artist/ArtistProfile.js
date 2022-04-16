@@ -15,6 +15,7 @@ import TrackItem from "../Playlists/TrackItem";
 import getImageColor from "../../utils/imageColor";
 import AlbumCard from "./AlbumCard";
 import Banner from "../Banner";
+import Footer from "../Footer";
 
 export default function ArtistProfile() {
     const { artistId } = useParams();
@@ -82,52 +83,55 @@ export default function ArtistProfile() {
     );
 
     return (
-        <div className="flex flex-col gap-10">
-            <Banner
-                backgroundColor={imageColor}
-                images={artist.images}
-                type={artist.type}
-                name={artist.name}
-                subheading={subheading}
-            />
+        <>
+            <div className="flex flex-col gap-10">
+                <Banner
+                    backgroundColor={imageColor}
+                    images={artist.images}
+                    type={artist.type}
+                    name={artist.name}
+                    subheading={subheading}
+                />
 
-            <section className="px-5">
-                <h2 className="text-2xl font-bold mb-5">Popular</h2>
-                <div>
-                    {hideContent
-                        ? topTracks
-                              .slice(0, 5)
-                              .map((track, i) => (
+                <section className="px-5">
+                    <h2 className="text-2xl font-bold mb-5">Popular</h2>
+                    <div>
+                        {hideContent
+                            ? topTracks
+                                  .slice(0, 5)
+                                  .map((track, i) => (
+                                      <TrackItem
+                                          key={track.id}
+                                          track={track}
+                                          index={i}
+                                      />
+                                  ))
+                            : topTracks.map((track, i) => (
                                   <TrackItem
                                       key={track.id}
                                       track={track}
                                       index={i}
                                   />
-                              ))
-                        : topTracks.map((track, i) => (
-                              <TrackItem
-                                  key={track.id}
-                                  track={track}
-                                  index={i}
-                              />
-                          ))}
-                </div>
-                <button
-                    className="text-neutral-400 text-sm font-semibold"
-                    onClick={() => setHideContent(!hideContent)}
-                >
-                    {hideContent ? "SEE MORE" : "SEE LESS"}
-                </button>
-            </section>
+                              ))}
+                    </div>
+                    <button
+                        className="text-neutral-400 text-sm font-semibold"
+                        onClick={() => setHideContent(!hideContent)}
+                    >
+                        {hideContent ? "SEE MORE" : "SEE LESS"}
+                    </button>
+                </section>
 
-            <section className="px-5">
-                <h2 className="text-2xl font-bold mb-5">Albums</h2>
-                <div className="grid grid-cols-auto-fit gap-10 pb-10">
-                    {albums.map((album) => (
-                        <AlbumCard album={album} key={album.id} />
-                    ))}
-                </div>
-            </section>
-        </div>
+                <section className="px-5">
+                    <h2 className="text-2xl font-bold mb-5">Albums</h2>
+                    <div className="grid grid-cols-auto-fit gap-10">
+                        {albums.map((album) => (
+                            <AlbumCard album={album} key={album.id} />
+                        ))}
+                    </div>
+                </section>
+            </div>
+            <Footer />
+        </>
     );
 }
