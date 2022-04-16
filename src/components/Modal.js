@@ -24,7 +24,7 @@ export default function Modal({ setShowModal, createPlaylist }) {
     return (
         <>
             <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-                <div className="relative w-auto my-6 mx-auto max-w-xs">
+                <div className="relative w-80 my-6 mx-auto max-w-xs px-2">
                     {/*content*/}
                     <div className="p-6 shadow-lg relative flex flex-col gap-5 w-full bg-neutral-800 outline-none focus:outline-none">
                         {/*header*/}
