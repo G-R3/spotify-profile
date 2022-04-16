@@ -21,7 +21,7 @@ export default function Banner({
                 <img
                     src={images[0]?.url}
                     alt=""
-                    className={`w-64 h-64 shadow-lg ${
+                    className={`w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 shadow-lg ${
                         type.toLowerCase() === "profile" || type === "artist"
                             ? "rounded-full"
                             : ""
