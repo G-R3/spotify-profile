@@ -33,7 +33,7 @@ const refreshAccessToken = async () => {
 
         setToken(access_token);
         setRefreshToken(refreshToken);
-        setExpiresIn(Date.now() + expires_in * 1000);
+        setExpiresIn(expires_in * 1000 - 60000);
     } catch (err) {
         console.log(err.message);
     }
@@ -51,27 +51,32 @@ const parseUrl = () => {
 
 const getAccessToken = () => {
     const { access_token, refresh_token, expires_in } = parseUrl();
-    const savedToken = getToken();
 
-    // TODO: handle token expiration
-    if (Date.now() > getExpiresIn() && getRefreshToken()) {
-        console.log("Token expired. Requesting and setting new token...");
-        refreshAccessToken();
-        return savedToken;
-    }
-
-    if (!savedToken && access_token) {
-        console.log(
-            "Token does not exist. Requesting and setting new token...",
-        );
+    if (access_token && refresh_token && expires_in) {
+        setToken(access_token);
         setRefreshToken(refresh_token);
-        refreshAccessToken();
-
+        setExpiresIn(expires_in * 1000 - 60000);
         return access_token;
     }
 
-    console.log("returning saved token...");
-    return savedToken;
+    let expireTime = getExpiresIn();
+
+    // token expired
+    if (Date.now() >= expireTime) {
+        console.log("Token has expired. Requesting a new token...");
+        refreshAccessToken();
+        return getToken();
+    }
+
+    // if no token is saved
+    const token = getToken();
+    if (!token) {
+        console.log("Token does not exist. Requesting a new token...");
+        refreshAccessToken();
+        return getToken();
+    }
+
+    return token;
 };
 
 let token = getAccessToken();
