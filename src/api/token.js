@@ -10,6 +10,9 @@ const setRefreshToken = (refreshToken) => {
 const setExpiresIn = (expiresIn) => {
     localStorage.setItem("expires_in", JSON.stringify(expiresIn));
 };
+const setTimeSnapshot = () => {
+    localStorage.setItem("elapsedTime", JSON.stringify(Date.now()));
+};
 const getToken = () => {
     return JSON.parse(localStorage.getItem("token"));
 };
@@ -18,6 +21,9 @@ const getRefreshToken = () => {
 };
 const getExpiresIn = () => {
     return JSON.parse(localStorage.getItem("expires_in"));
+};
+const getTimeSnapshot = () => {
+    return JSON.parse(localStorage.getItem("elapsedTime"));
 };
 
 const refreshAccessToken = async () => {
@@ -34,6 +40,9 @@ const refreshAccessToken = async () => {
         setToken(access_token);
         setRefreshToken(refreshToken);
         setExpiresIn(expires_in * 1000 - 60000);
+        setTimeSnapshot();
+
+        window.location.replace("/");
     } catch (err) {
         console.log(err.message);
     }
@@ -56,13 +65,14 @@ const getAccessToken = () => {
         setToken(access_token);
         setRefreshToken(refresh_token);
         setExpiresIn(expires_in * 1000 - 60000);
+
+        window.location.replace("/");
+
         return access_token;
     }
 
-    let expireTime = getExpiresIn();
-
     // token expired
-    if (Date.now() >= expireTime) {
+    if (Date.now() - getTimeSnapshot() >= getExpiresIn()) {
         console.log("Token has expired. Requesting a new token...");
         refreshAccessToken();
         return getToken();
