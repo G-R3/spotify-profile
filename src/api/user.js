@@ -68,7 +68,7 @@ const getPlaylist = async (playlistId) => {
 
 const getUserData = () => {
     return axios.all([getUser(), getFollowing(), getTopArtists()]).then(
-        axios.spread((user, following, artists, tracks) => {
+        axios.spread((user, following, artists) => {
             const data = {
                 user: user.data,
                 following: following.data,
@@ -103,7 +103,7 @@ const getTrackUris = (tracks) => {
 };
 
 const addTracksToPlaylist = async (playlistId, uris) => {
-    const response = await axios.post(
+    await axios.post(
         `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
         uris,
         { headers },
